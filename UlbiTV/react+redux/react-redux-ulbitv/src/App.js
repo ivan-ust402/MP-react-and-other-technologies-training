@@ -3,17 +3,31 @@ import { useDispatch, useSelector } from "react-redux"
 import { nanoid } from "nanoid"
 import { addCustomerAction, removeAllCustomersAction, removeCustomerAction } from "./store/customerReducer"
 import { addCashAction, getCashAction } from "./store/cashReducer"
+import { fetchCustomers } from "./asyncActions/customers"
+import { useEffect, useState } from "react"
 
 function App() {
   const dispatch = useDispatch()
   const cash = useSelector((state) => state.cash.cash)
   const customers = useSelector((state) => state.customers.customers)
+  const [isLoaded, setIsLoaded] = useState(false)
+  useEffect(() => {
+    if (customers.length === 0) {
+      setIsLoaded(false)
+    }
+  }, [customers])
 
   const addCash = (cash) => {
     dispatch(addCashAction(cash))
   }
   const getCash = (cash) => {
     dispatch(getCashAction(cash))
+  }
+  const addCustomersFromDB = () => {
+    if (!isLoaded) {
+      setIsLoaded(true)
+      dispatch(fetchCustomers())
+    }
   }
   const addCustomer = (name) => {
     const customer = {
@@ -89,6 +103,7 @@ function App() {
       ) : (
         <div>Список клиентов пуст</div>
       )}
+      
       <div
         style={{
           display: "flex",
@@ -105,8 +120,17 @@ function App() {
         </button>
         <button
           className="control"
-          onClick={() =>
+          onClick={() => {
+            addCustomersFromDB()
+          }}
+        >
+          Добавить клиентов из базы
+        </button>
+        <button
+          className="control"
+          onClick={() => {
             removeCustomers()
+          }
           }
         >
           Удалить всех клиентов
