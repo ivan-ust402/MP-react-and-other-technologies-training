@@ -1,5 +1,32 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control {
+  background-color: rgb(232, 255, 127);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all .3s ease-in;
+}
+
+@media (hover: hover) {
+  .control:hover {
+    opacity: 0.8;
+    background-color: #ebb318;
+    color: #111;
+  }
+}
+@media (hover: none) {
+  .control:active {
+    opacity: 0.8;
+    background-color: #ebb318;
+    color: #111;
+  }
 }
 
 
