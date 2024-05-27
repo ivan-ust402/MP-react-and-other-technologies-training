@@ -1,4 +1,62 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+.count {
+  display: flex;
+  justify-content: center;
+  min-width: 100px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 30px;
+  border: 1px solid blueviolet;
+  background-color: #e3f4f5;
+  color: #777;
+}
+
+.btns {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  cursor: pointer;
+  background-color: blueviolet;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  transition: all .3s ease;
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    opacity: 0.8;
+  }
+}
+
+@media (hover: none) {
+  .btn:active {
+    opacity: 0.8;
+  }
+}
+
+.users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 30px;
+  border: 1px solid blueviolet;
+  background-color: #e3f4f5;
+  color: #777;
+}

@@ -16,12 +16,12 @@ export const countReducer = (state = defaultState, action) => {
   }
 }
 
-export const increaseCountAction = (payload) => ({
+export const increaseCountAction = (payload = 1) => ({
   type: INCREASE_COUNT,
   payload,
 })
 
-export const decreaseCountAction = (payload) => ({
+export const decreaseCountAction = (payload = 1) => ({
   type: DECREASE_COUNT,
   payload,
 })
