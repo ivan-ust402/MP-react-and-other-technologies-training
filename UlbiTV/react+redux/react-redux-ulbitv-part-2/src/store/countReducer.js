@@ -2,8 +2,10 @@ const defaultState = {
   count: 0,
 }
 
-const INCREASE_COUNT = "INCREASE_COUNT"
-const DECREASE_COUNT = "DECREASE_COUNT"
+export const INCREASE_COUNT = "INCREASE_COUNT"
+export const ASYNC_INCREASE_COUNT = "ASYNC_INCREASE_COUNT"
+export const DECREASE_COUNT = "DECREASE_COUNT"
+export const ASYNC_DECREASE_COUNT = "ASYNC_DECREASE_COUNT"
 
 export const countReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -21,7 +23,17 @@ export const increaseCountAction = (payload = 1) => ({
   payload,
 })
 
+export const asyncIncreaseCountAction = (payload = 1) => ({
+  type: ASYNC_INCREASE_COUNT,
+  payload,
+})
+
 export const decreaseCountAction = (payload = 1) => ({
   type: DECREASE_COUNT,
+  payload,
+})
+
+export const asyncDecreaseCountAction = (payload = 1) => ({
+  type: ASYNC_DECREASE_COUNT,
   payload,
 })

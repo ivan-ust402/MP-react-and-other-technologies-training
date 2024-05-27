@@ -1,6 +1,7 @@
 import "./App.css"
 import { useSelector, useDispatch } from "react-redux"
-import { decreaseCountAction, increaseCountAction } from "./store/countReducer"
+import { asyncDecreaseCountAction, asyncIncreaseCountAction, decreaseCountAction, increaseCountAction } from "./store/countReducer"
+import { fetchUsers } from "./store/userReducer"
 
 const App = () => {
   const count = useSelector((state) => state.countReducer.count)
@@ -17,14 +18,37 @@ const App = () => {
         <button onClick={() => dispatch(decreaseCountAction())} className="btn">
           ДЕКРЕМЕНТ--
         </button>
+        
       </div>
       <div className="btns">
-        <button className="btn">ПОЛУЧИТЬ ЮЗЕРОВ</button>
+          <button
+            onClick={() => {
+              dispatch(asyncIncreaseCountAction())
+            }}
+            className="btn"
+          >
+            АСИНХРОННЫЙ ИНКРЕМЕНТ++
+          </button>
+          <button
+            onClick={() => {
+              dispatch(asyncDecreaseCountAction())
+            }}
+            className="btn"
+          >
+            АСИНХРОННЫЙ ДЕКРЕМЕНТ--
+          </button>
+        </div>
+      <div className="btns">
+        <button className="btn" onClick={() => {
+          dispatch(fetchUsers())
+        }}>ПОЛУЧИТЬ ЮЗЕРОВ</button>
       </div>
       <div className="users">
-        {users.length ? users.map((user) => (
-          <div className="user">{user.name}</div>
-        )): <div>Список пользователей пуст</div>}
+        {users.length ? (
+          users.map((user, index) => <div key={index} className="user">{index+1}. {user.name}</div>)
+        ) : (
+          <div>Список пользователей пуст</div>
+        )}
       </div>
     </div>
   )
