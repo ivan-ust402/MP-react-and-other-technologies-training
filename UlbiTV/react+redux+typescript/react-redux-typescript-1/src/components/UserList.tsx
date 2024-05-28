@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import { useDispatch } from 'react-redux';
 import { fetchUsers } from '../store/action-creators/users';
-import { Dispatch } from 'redux';
-import { UserAction } from '../types/users';
+import { useAppDispatch } from '../store';
 
 
 const UserList: React.FC = () => {
   const {users, loading, error} = useTypedSelector(state => state.user)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(fetchUsers())
-  }, [])
+}, [dispatch])
 
   if (loading) {
     return <h1>Идет загрузка пользователей...</h1>
@@ -24,8 +22,8 @@ const UserList: React.FC = () => {
 
   return (
     <div>
-      {users.map(user => 
-        <div>{user.name}</div>
+      {users.map((user, index) => 
+        <div key={index}>{user.name}</div>
       )}
     </div>
   );
