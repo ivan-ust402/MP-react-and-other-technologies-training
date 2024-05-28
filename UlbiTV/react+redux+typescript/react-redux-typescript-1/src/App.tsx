@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
 import UserList from './components/UserList';
+import TodoList from './components/TodoList';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App center">
       <UserList />
+      <hr />
+      <TodoList />
     </div>
   );
 }

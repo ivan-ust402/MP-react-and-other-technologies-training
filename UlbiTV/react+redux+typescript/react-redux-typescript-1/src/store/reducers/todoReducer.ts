@@ -1,22 +1,26 @@
-import { IUserState, UserAction, UserActionTypes } from "../../types/users"
+import { ITodoState, TodoAction, TodoActionsTypes } from "../../types/todos"
 
-const defaultState: IUserState = {
-  users: [],
+const defaultState: ITodoState = {
+  todos: [],
   loading: false,
   error: null,
+  page: 1,
+  limit: 10,
 }
 
 export const todoReducer = (
   state = defaultState,
-  action: UserAction
-): IUserState => {
+  action: TodoAction
+): ITodoState => {
   switch (action.type) {
-    case UserActionTypes.FETCH_USERS:
-      return { loading: true, error: null, users: [] }
-    case UserActionTypes.FETCH_USERS_SUCCESS:
-      return { loading: false, error: null, users: action.payload }
-    case UserActionTypes.FETCH_USERS_ERROR:
-      return { loading: false, error: action.payload, users: [] }
+    case TodoActionsTypes.FETCH_TODOS:
+      return { ...state, loading: true}
+    case TodoActionsTypes.FETCH_TODOS_SUCCESS:
+      return { ...state, loading: false, todos: action.payload }
+    case TodoActionsTypes.FETCH_TODOS_ERROR:
+      return { ...state, loading: false, error: action.payload}
+    case TodoActionsTypes.SET_TODO_PAGE:
+      return { ...state, page: action.payload }
     default:
       return state
   }

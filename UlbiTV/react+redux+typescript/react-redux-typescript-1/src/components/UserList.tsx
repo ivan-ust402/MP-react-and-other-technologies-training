@@ -1,16 +1,21 @@
-import React, { useEffect } from 'react';
-import { useTypedSelector } from '../hooks/useTypedSelector';
-import { fetchUsers } from '../store/action-creators/users';
-import { useAppDispatch } from '../store';
-
+import React, { useEffect } from "react"
+import { useTypedSelector } from "../hooks/useTypedSelector"
+// import { fetchUsers } from "../store/action-creators/users"
+// import { useAppDispatch } from "../store"
+import { useActions } from "../hooks/useActions"
 
 const UserList: React.FC = () => {
-  const {users, loading, error} = useTypedSelector(state => state.user)
-  const dispatch = useAppDispatch()
+  const { error, loading, users } = useTypedSelector((state) => state.user)
+  // const dispatch = useAppDispatch()
+  const { fetchUsers } = useActions()
+
+  //   useEffect(() => {
+  //     dispatch(fetchUsers())
+  // }, [dispatch])
 
   useEffect(() => {
-    dispatch(fetchUsers())
-}, [dispatch])
+    fetchUsers()
+  }, [])
 
   if (loading) {
     return <h1>Идет загрузка пользователей...</h1>
@@ -21,12 +26,14 @@ const UserList: React.FC = () => {
   }
 
   return (
-    <div>
-      {users.map((user, index) => 
-        <div key={index}>{user.name}</div>
-      )}
+    <div className="users">
+      {users.map((user, index) => (
+        <div key={index} className="user underline-animation">
+          {index + 1}. {user.name}
+        </div>
+      ))}
     </div>
-  );
-};
+  )
+}
 
-export default UserList;
+export default UserList
