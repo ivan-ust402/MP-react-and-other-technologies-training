@@ -32,7 +32,7 @@ const TodoList: React.FC = () => {
         </div>
       ))}
       <div className="pagination">
-        {pages.map((p) => (
+        {pages.map((p, index) => (
           <div
             style={{
               padding: '2px 7px',
@@ -40,6 +40,7 @@ const TodoList: React.FC = () => {
             }}
             className="page"
             onClick={() => setTodoPage(p)}
+            key={index}
           >
             {p}
           </div>
