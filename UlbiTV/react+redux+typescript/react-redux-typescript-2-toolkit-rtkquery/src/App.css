@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+
+.center {
+  padding-left: calc(50% - 550px);
+  padding-right: calc(50% - 550px);
+}
