@@ -1,5 +1,33 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: azure;
+}
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid red;
+  /* line-height: 25px; */
+  text-underline-offset: 5px;
+  text-decoration: 2px underline red;
+  font-weight: 500;
+  color: #333;
+  width: 50vh;
+  height: 40vh;
+  margin: 20vh auto;
+}
 .App {
   text-align: center;
+  background-color: azure;
+  min-height: 100vh;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
 }
 
 
@@ -12,12 +40,19 @@
   width: 100%;
   padding: 20px;
 }
-
+.users {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 .user {
   padding: 20px;
   border: 1px solid orange;
   margin-top: 15px;
-  width: 100%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
 }
@@ -33,4 +68,34 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+.btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: orange;
+  border: 1px solid #ccc;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    opacity: 0.8;
+  } 
+}
+@media (hover: none) {
+  .btn:active {
+    opacity: 0.8;
+  }
 }
