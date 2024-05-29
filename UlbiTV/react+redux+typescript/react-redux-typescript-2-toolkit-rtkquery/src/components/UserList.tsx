@@ -13,20 +13,12 @@ const UserList = () => {
   },
 [])
 
-  if (error) {
-    return (
-      <div className="error">{error}</div>
-    )
-  }
-  if (isLoading) {
-    return (
-      <div className="loader">Идет загрузка пользователей с сервера...</div>
-    )
-  }
   return (
     <div className='users'>
-      {users.map(user => (
-        <div className='user'>{user.id} - {user.name}</div>
+      {isLoading && <div className="loader">Идет загрузка пользователей с сервера...</div>}
+      {error && <div className="error">{error}</div>}
+      {users && users.map(user => (
+        <div key={user.id} className='user'>{user.id} - {user.name}</div>
       ))}
     </div>
   );
