@@ -68,6 +68,13 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+.post-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .btns {
   display: flex;

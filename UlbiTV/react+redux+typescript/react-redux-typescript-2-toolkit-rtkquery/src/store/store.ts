@@ -1,18 +1,21 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { userSlice } from "./reducers/UserSlice";
 import { counterSlice } from "./reducers/CounterSlice";
+import { postAPI } from "../services/PostService";
 
 
 export const rootReducer = combineReducers({
   user: userSlice.reducer,
-  counter: counterSlice.reducer
+  counter: counterSlice.reducer,
+  [postAPI.reducerPath]: postAPI.reducer
 })
 
 // При configureStore нет необходимости настраивать devtools и
 // middleware thunk, т.к. они уже идут из коробки
 export const setupStore = () => {
   return configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(postAPI.middleware)
   })
 }
 

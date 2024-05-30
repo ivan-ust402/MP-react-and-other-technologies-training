@@ -29,7 +29,7 @@ export const fetchUsers = createAsyncThunk(
       return response.data
     } catch (error) {
       // await new Promise((res) => setTimeout(res, 1000))
-      return thunkAPI.rejectWithValue('Не удалось загрузить пользователей!')
+      return thunkAPI.rejectWithValue(`c(о_О)ↄ Не удалось загрузить пользователей! ¯\\_(ツ)_/¯`)
     }
   }
 )
