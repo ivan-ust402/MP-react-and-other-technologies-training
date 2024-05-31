@@ -29,7 +29,16 @@ export const fetchUsers = createAsyncThunk(
       return response.data
     } catch (error) {
       // await new Promise((res) => setTimeout(res, 1000))
+      if (axios.isAxiosError(error)) {
+        console.log(error.message)
+      }
+
       return thunkAPI.rejectWithValue(`c(о_О)ↄ Не удалось загрузить пользователей! ¯\\_(ツ)_/¯`)
+      
+      /*
+      AxiosError {message: 'Network Error', name: 'AxiosError', code: 'ERR_NETWORK', config: {…}, request: XMLHttpRequest, …}
+      */
+  
     }
   }
 )

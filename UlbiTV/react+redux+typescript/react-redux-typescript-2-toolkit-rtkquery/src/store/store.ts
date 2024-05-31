@@ -2,12 +2,14 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { userSlice } from "./reducers/UserSlice";
 import { counterSlice } from "./reducers/CounterSlice";
 import { postAPI } from "../services/PostService";
+import { postAPIForJSONServer } from "../services/PostServiceForJsonServer";
 
 
 export const rootReducer = combineReducers({
   user: userSlice.reducer,
   counter: counterSlice.reducer,
-  [postAPI.reducerPath]: postAPI.reducer
+  [postAPI.reducerPath]: postAPI.reducer,
+  [postAPIForJSONServer.reducerPath]: postAPIForJSONServer.reducer
 })
 
 // При configureStore нет необходимости настраивать devtools и
@@ -15,7 +17,7 @@ export const rootReducer = combineReducers({
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(postAPI.middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(postAPI.middleware).concat(postAPIForJSONServer.middleware)
   })
 }
 

@@ -76,6 +76,10 @@
   flex-direction: column;
   gap: 20px;
 }
+.post-container {
+  display: flex;
+  
+}
 .btns {
   display: flex;
   flex-direction: row;
