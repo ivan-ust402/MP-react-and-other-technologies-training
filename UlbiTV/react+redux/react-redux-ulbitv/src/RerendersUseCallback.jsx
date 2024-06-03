@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react"
+import React, { useState, useCallback } from "react"
 
 export const SomeComponent = React.memo(({ increment }) => {
   console.log("Rerender Child Component")
