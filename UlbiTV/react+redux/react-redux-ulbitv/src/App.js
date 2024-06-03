@@ -7,6 +7,8 @@ import { fetchCustomers } from "./asyncActions/customers"
 import { useEffect, useState } from "react"
 import { Debounce } from "./Debounce"
 import { Throttling } from "./Throttling"
+import { RerendersMainComponent } from "./RerendersMainComponent"
+import { RerendersUseCallback } from "./RerendersUseCallback"
 
 
 function App() {
@@ -139,8 +141,14 @@ function App() {
           Удалить всех клиентов
         </button>
       </div>
+      <hr/>
       <Debounce />
+      <hr/>
       <Throttling />
+      <hr/>
+      <RerendersMainComponent />
+      <hr/>
+      <RerendersUseCallback />
     </div>
   )
 }

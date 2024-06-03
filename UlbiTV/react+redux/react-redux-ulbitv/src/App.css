@@ -5,6 +5,10 @@
   gap: 10px;
 }
 
+hr {
+  width: 100%;
+}
+
 .control {
   background-color: rgb(232, 255, 127);
   border: 1px solid #ccc;

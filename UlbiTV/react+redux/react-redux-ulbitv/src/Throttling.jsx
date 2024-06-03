@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import axios from "axios";
+// import axios from "axios";
 
 // ВАРИАНТ БЕЗ Throttling
 // При таком раскладе событие отслеживается каждую миллисекунду
