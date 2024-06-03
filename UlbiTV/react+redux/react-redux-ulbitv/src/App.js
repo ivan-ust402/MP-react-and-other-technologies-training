@@ -5,6 +5,9 @@ import { addCustomerAction, removeAllCustomersAction, removeCustomerAction } fro
 import { addCashAction, getCashAction } from "./store/cashReducer"
 import { fetchCustomers } from "./asyncActions/customers"
 import { useEffect, useState } from "react"
+import { Debounce } from "./Debounce"
+import { Throttling } from "./Throttling"
+
 
 function App() {
   const dispatch = useDispatch()
@@ -136,6 +139,8 @@ function App() {
           Удалить всех клиентов
         </button>
       </div>
+      <Debounce />
+      <Throttling />
     </div>
   )
 }
