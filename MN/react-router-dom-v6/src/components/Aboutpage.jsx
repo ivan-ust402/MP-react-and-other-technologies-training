@@ -8,4 +8,4 @@ const Aboutpage = () => {
   );
 }
 
-export default Aboutpage;
+export { Aboutpage };
