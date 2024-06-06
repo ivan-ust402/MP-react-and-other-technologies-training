@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Homepage = () => {
+const HomePage = () => {
   return (
     <>
       <h1>This  our home page.</h1>
-      <h1>Get started with React-Router 6</h1>
+      <p>Get started with React-Router 6!</p>
     </>
   );
 }
 
-export { Homepage };
+export { HomePage };

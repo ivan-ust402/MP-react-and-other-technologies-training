@@ -10,7 +10,8 @@ const CustomLink = ({children, to, ...props}) => {
       to={to} 
       {...props}
       style={{
-        color: match ? 'orange': 'white'
+        color: match ? 'orange': 'white',
+        cursor: match ? 'default': 'pointer'
       }}
     >
       {children}

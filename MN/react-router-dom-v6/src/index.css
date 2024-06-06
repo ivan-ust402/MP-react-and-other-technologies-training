@@ -42,6 +42,7 @@ footer {
 h1 {
   text-align: center;
   margin-top: 0;
+  margin-bottom: 50px;
 }
 
 .container {
@@ -70,4 +71,87 @@ main a:hover {
 .active-link {
   color: var(--color-active);
   cursor: default;
+}
+
+.error {
+  color: red;
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+.loading {
+  color: orange;
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.list-item-title {
+  padding-right: 10px;
+}
+
+.post-card {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-card__title {
+  text-align: center;
+  max-width: 300px;
+  justify-self: center;
+  align-self: center;
+}
+
+.post-card__footer {
+  margin-top: 50px;
+  font-style: italic;
+  color: #999;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.post-card__footer-item {
+  padding: 0 20px;
+}
+
+.controls {
+  padding-bottom: 30px;
+}
+
+.btn {
+  background-color: #2C2C32;
+  padding: 5px 15px;
+  border-radius: 10px;
+  transition: all .3s ease-in;
+  min-width: fit-content;
+}
+
+.btn-link {
+  color: white;
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    opacity: 0.8;
+  }
+  .btn-link:hover {
+    text-decoration: none;
+  }
 }
