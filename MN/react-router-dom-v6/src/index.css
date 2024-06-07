@@ -147,11 +147,63 @@ main a:hover {
   color: white;
 }
 
+.pagination {
+  margin: 20px;
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.pagination-item {
+  
+}
+
+.pagination-btn {
+  padding: 5px;
+  border-radius: 5px;
+  width: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s ease-in;
+}
+.pagination-btn_active {
+  padding: 5px;
+  color: white;
+  background-color: #2C2C32;
+  border-radius: 5px;
+  width: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s ease-in;
+}
+
 @media (hover: hover) {
   .btn:hover {
     opacity: 0.8;
   }
   .btn-link:hover {
     text-decoration: none;
+  }
+  .pagination-btn:hover {
+    border: 1px solid orange;
+    opacity: 0.8;
+  }
+}
+
+@media (hover: none) {
+  .btn:active {
+    opacity: 0.8;
+  }
+  .btn-link:active {
+    text-decoration: none;
+  }
+  .pagination-btn:active {
+    opacity: 0.5;
   }
 }
