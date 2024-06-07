@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom"
 import Loader from "../components/Loader"
 import Error from "../components/Error"
 import PostCard from "../components/PostCard"
 
 const PostPage = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
+  const location = useLocation()
+  console.log("post state", location.state)
   const [post, setPost] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -36,8 +39,19 @@ const PostPage = () => {
       {error && <Error error={error} />}
       {post && (
         <>
+          <button onClick={() => navigate('/posts', {replace: false, state: {page: location.state?.page ? location.state.page : 1, limit: location.state?.limit ? location.state.limit : 15}})} className="btn">
+              Come back
+          </button>
           <PostCard post={post} />
-          <button className="btn"><Link className="btn-link" id={post.id} to={`/posts/${post.id}/edit`}>Edit Post</Link></button>
+          <button className="btn">
+            <Link
+              className="btn-link"
+              id={post.id}
+              to={`/posts/${post.id}/edit`}
+            >
+              Edit Post
+            </Link>
+          </button>
         </>
       )}
     </>

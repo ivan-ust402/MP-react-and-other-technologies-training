@@ -1,7 +1,8 @@
 import React from "react"
+// import { Link } from "react-router-dom"
 
-const Pagination = React.memo(({ pageCount, setPage, currentPage }) => {
-  console.log("pagination")
+const Pagination = React.memo(({ pageCount, setPage, currentPage, limit }) => {
+  // console.log("pagination")
   const pageNumbers = []
   for (let i = 1; i <= pageCount; i++) {
     pageNumbers.push(i)
@@ -9,7 +10,7 @@ const Pagination = React.memo(({ pageCount, setPage, currentPage }) => {
 
   return (
     <>
-      {pageCount && (
+      {!!pageCount && (
         <ul className="pagination">
           {pageNumbers.map((number) => (
             <li className="pagination-item" key={number}>
@@ -21,6 +22,16 @@ const Pagination = React.memo(({ pageCount, setPage, currentPage }) => {
                 }
                 onClick={() => setPage(number)}
               >
+                {/* <Link 
+                  style={{
+                    color: currentPage === number?'white': 'black',
+                    textDecoration: 'none',
+                    cursor: currentPage === number? 'default': 'pointer',
+                  }} 
+                  to={`/posts?_limit=${limit}&_page=${number}`}
+                > 
+                    {number}
+                </Link> */}
                 {number}
               </button>
             </li>

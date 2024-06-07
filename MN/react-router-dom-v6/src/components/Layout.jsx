@@ -1,6 +1,7 @@
 import React from "react"
-import { NavLink, Outlet } from "react-router-dom"
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom"
 import { CustomLink } from "./CustomLink"
+import { useAuth } from "../hooks/useAuth"
 
 const setActiveClassName = ({isActive}) => isActive? 'active-link' : ''
 
@@ -14,6 +15,11 @@ const setActiveStyles = ({isActive}) => ({
   cursor: isActive ? 'default': ''})
 
 const Layout = () => {
+  const {user, signIn, signOut} = useAuth()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const fromPage = location.state?.from?.pathname || '/'
+  const hadlerSignOut = () => signOut(() => navigate(fromPage, {replace: true}))
   return (
     <>
       <header>
@@ -30,6 +36,7 @@ const Layout = () => {
         <NavLink className={setActiveClassName} to="/about">
           About
         </NavLink>
+        {user ? <button onClick={hadlerSignOut} className="btn_secondary" >Sign Out</button>: <button className="btn_secondary"><Link className="btn-link_secondary" to={'login'} state={{from: fromPage}}>Sign In</Link></button>}
       </header>
       <main className="container">
         <Outlet />

@@ -1,21 +1,30 @@
 import React, { useEffect, useMemo, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import Loader from "../components/Loader"
 import Error from "../components/Error"
 import { Pagination } from "../components/Pagination"
 
 const BlogPage = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  console.log(location)
   const [posts, setPosts] = useState(null)
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(location?.state?.page ? location.state.page : 1)
   const [totalPosts, setTotalPosts] = useState(null)
-  const postsPerPage = 15
+  const postsPerPage = location?.state?.limit ? location.state.limit : 15
+  const delay = 500
 
-  const memoizedTotalPosts = useMemo(() => {
-    console.log("memoTotal")
+  useMemo(() => {
+    // console.log("memoTotal")
     return fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
+      .then(async (res) => {
+        await new Promise((resolve, reject) => {
+          setTimeout(resolve, delay)
+        })
+        return res.json()
+      })
       .then((data) => setTotalPosts(data.length))
       .catch((e) => {
         setError(e.message)
@@ -27,13 +36,14 @@ const BlogPage = () => {
     setLoading(true)
     setError("")
     setPosts([])
+    location.state = {page: currentPage, limit: postsPerPage}
 
     fetch(
       `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}&_limit=${postsPerPage}`
     )
       .then(async (response) => {
         await new Promise((res) => {
-          setTimeout(res, 500)
+          setTimeout(res, delay)
         })
         setLoading(false)
         setError("")
@@ -66,9 +76,12 @@ const BlogPage = () => {
           <ul className="list">
             {posts.map((post, index) => (
               <li className="list-item" key={post.id}>
-                <Link className="list-item-title" to={`${post.id}`}>
+                {/* <Link className="list-item-title" to={`${post.id}`}>
                   {(index + 1) + (currentPage - 1) * postsPerPage}. {post.title}
-                </Link>
+                </Link> */}
+                <div className="list-item-title" onClick={() => navigate(`${post.id}`, {state: {page: currentPage, limit: postsPerPage}})}>
+                  {index + 1 + (currentPage - 1) * postsPerPage}. {post.title}
+                </div>
                 <button className="btn">
                   <Link
                     className="btn-link"
@@ -81,7 +94,12 @@ const BlogPage = () => {
               </li>
             ))}
           </ul>
-          <Pagination pageCount={countPages} setPage={setCurrentPage} currentPage={currentPage}/>
+          <Pagination
+            pageCount={countPages}
+            setPage={setCurrentPage}
+            currentPage={currentPage}
+            limit={postsPerPage}
+          />
         </>
       )}
     </>
