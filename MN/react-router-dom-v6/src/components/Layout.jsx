@@ -28,12 +28,12 @@ const Layout = () => {
         </NavLink> */}
         <CustomLink to={"/"}>Home</CustomLink>
         <NavLink 
-          to="/posts" 
+          to="/posts?_page=1&_limit=15" 
           style={setActiveStyles}
         >
           Blog
         </NavLink>
-        <NavLink className={setActiveClassName} to="/about">
+        <NavLink className={setActiveClassName} to="/about-us">
           About
         </NavLink>
         {user ? <button onClick={hadlerSignOut} className="btn_secondary" >Sign Out</button>: <button className="btn_secondary"><Link className="btn-link_secondary" to={'login'} state={{from: fromPage}}>Sign In</Link></button>}

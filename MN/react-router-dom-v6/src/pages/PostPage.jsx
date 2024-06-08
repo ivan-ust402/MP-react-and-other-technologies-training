@@ -7,8 +7,8 @@ import PostCard from "../components/PostCard"
 const PostPage = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const location = useLocation()
-  console.log("post state", location.state)
+  const { state: locationState } = useLocation()
+  // console.log("post state", locationState)
   const [post, setPost] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -39,7 +39,7 @@ const PostPage = () => {
       {error && <Error error={error} />}
       {post && (
         <>
-          <button onClick={() => navigate('/posts', {replace: false, state: {page: location.state?.page ? location.state.page : 1, limit: location.state?.limit ? location.state.limit : 15}})} className="btn">
+          <button onClick={() => navigate(`/posts?_page=${locationState.page}&_limit=${locationState.limit}`, {replace: false, })} className="btn">
               Come back
           </button>
           <PostCard post={post} />

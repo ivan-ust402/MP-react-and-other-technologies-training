@@ -1,6 +1,5 @@
 import "./App.css"
 import { Navigate, Route, Routes } from "react-router-dom"
-import { BlogPage } from "./pages/BlogPage"
 import { AboutPage } from "./pages/AboutPage"
 import { NotFoundPage } from "./pages/NotFoundPage"
 import { Layout } from "./components/Layout"
@@ -8,11 +7,12 @@ import { PostPage } from "./pages/PostPage"
 import { HomePage } from "./pages/HomePage"
 import { CreatePostPage } from "./pages/CreatePostPage"
 import { EditPostPage } from "./pages/EditPostPage"
-import LoginPage from "./pages/LoginPage"
+import { LoginPage } from "./pages/LoginPage"
 import { RequireAuth } from "./hoc/RequireAuth"
 import { AuthProvider } from "./hoc/AuthProvider"
+import { BlogPage } from "./pages/BlogPage"
 
-function App() {
+const App = () => {
   console.log("App")
   return (
     <div className="App">
@@ -20,7 +20,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path="posts" element={<BlogPage />} />
             <Route path="posts/:id" element={<PostPage />} />
             <Route
               path="posts/:id/edit"
@@ -30,6 +29,7 @@ function App() {
                 </RequireAuth>
               }
             />
+            <Route path="posts/:_page?/:_limit?" element={<BlogPage />} />
             <Route
               path="posts/create"
               element={
@@ -53,4 +53,4 @@ function App() {
   )
 }
 
-export default App
+export { App } 
