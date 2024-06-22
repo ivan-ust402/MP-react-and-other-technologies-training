@@ -11,9 +11,11 @@ import { LoginPage } from "./pages/LoginPage"
 import { RequireAuth } from "./hoc/RequireAuth"
 import { AuthProvider } from "./hoc/AuthProvider"
 import { BlogPage } from "./pages/BlogPage"
+import { SearchPage } from "./pages/SearchPage"
+import { PostPageForSearch } from "./pages/PostPageForSearch"
+import { EditPostPageForSearch } from "./pages/EditPostPageForSearch"
 
 const App = () => {
-  console.log("App")
   return (
     <div className="App">
       <AuthProvider>
@@ -44,6 +46,19 @@ const App = () => {
               path="about"
               element={<Navigate to={"/about-us"} replace />}
             ></Route>
+            <Route path="search-posts/:id" element={<PostPageForSearch />} />
+            <Route
+              path="search-posts/:id/edit"
+              element={
+                <RequireAuth>
+                  <EditPostPageForSearch />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="search-posts/:_page?/:_limit?/:search?"
+              element={<SearchPage />}
+            />
             <Route path="login" element={<LoginPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>

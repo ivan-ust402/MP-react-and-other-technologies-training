@@ -33,6 +33,12 @@ const Layout = () => {
         >
           Blog
         </NavLink>
+        <NavLink 
+          to="/search-posts?_page=1&limit=15" 
+          style={setActiveStyles}
+        >
+          Search
+        </NavLink>
         <NavLink className={setActiveClassName} to="/about-us">
           About
         </NavLink>
