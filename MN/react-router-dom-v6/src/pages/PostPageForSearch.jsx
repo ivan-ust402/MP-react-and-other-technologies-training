@@ -33,7 +33,6 @@ const PostPageForSearch = () => {
         return setError(e.message)
       })
   }, [id])
-  console.log(locationState)
   return (
     <>
       {loading && <Loader />}

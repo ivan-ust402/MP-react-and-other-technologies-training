@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Loader = () => {
+const Loader = ({text}) => {
   return (
-    <div className='loading'>Loading posts... </div>
+    <div className='loading'>{text}</div>
   );
 }
 

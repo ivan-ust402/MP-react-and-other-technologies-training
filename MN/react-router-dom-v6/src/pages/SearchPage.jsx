@@ -16,9 +16,12 @@ const SearchPage = () => {
   const postQuery = searchParams.get("search") || ""
   const page = Number(searchParams.get("_page")) || 1
   const limit = Number(searchParams.get("_limit")) || 15
-  
+
+  // State of greeting
+  const [greeting, setGreeting] = useState(false)
+
   // State of input
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState("")
 
   // State of pagination
   const [totalPosts, setTotalPosts] = useState(null)
@@ -31,19 +34,22 @@ const SearchPage = () => {
       posts.length === 0
         ? posts.length
         : posts.length - (start + countPostsPerPage) > 0
-        ? start + countPostsPerPage - 1
-        : posts.length - 1
+        ? start + countPostsPerPage
+        : posts.length
     for (let index = start; index < finish; index++) {
       tempArr.push(posts[index])
     }
     return tempArr
   }
 
+  
   useEffect(() => {
+    setGreeting(false)
     setLoading(true)
+    console.log(greeting)
     setError("")
     setPosts(null)
-    setInputValue('')
+    setInputValue("")
     fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then(async (response) => {
         await new Promise((res) => {
@@ -56,17 +62,14 @@ const SearchPage = () => {
       .then((data) => {
         let filteredPosts = null
         if (postQuery === "") {
-          filteredPosts = data
+          filteredPosts = []
+          setGreeting(true)
         } else {
           filteredPosts = data.filter((post) => {
             return post.title.toLowerCase().includes(postQuery)
           })
         }
-        const pagePosts = calculatePostsPerPage(
-          filteredPosts,
-          page,
-          limit
-        )
+        const pagePosts = calculatePostsPerPage(filteredPosts, page, limit)
         setLoading(false)
         setPosts(pagePosts)
         setTotalPosts(filteredPosts.length)
@@ -75,7 +78,7 @@ const SearchPage = () => {
       .catch((e) => {
         setLoading(false)
         setError(e)
-        setInputValue('')
+        setInputValue("")
       })
   }, [page, postQuery, limit])
 
@@ -102,10 +105,9 @@ const SearchPage = () => {
           Search
         </button>
       </form>
-      {loading && <Loader />}
+      {loading && <Loader text={'Loading...'}/>}
       {error && <Error />}
-      {posts &&
-        (posts.length > 0 && !loading ? (
+      {posts && (posts.length > 0 && !loading ? (
           <>
             <ul className="list">
               {posts.map((post, index) => (
@@ -146,9 +148,13 @@ const SearchPage = () => {
               search={postQuery}
             />
           </>
-        ) : (
-          <div>No posts were found matching your request.</div>
-        ))}
+        ) 
+        : !greeting 
+        ? (
+          <div className="info-text">No posts were found matching your request.</div>
+        )
+        : <div className="info-text">Let's Try To Search!!!</div>)
+      }
     </>
   )
 }

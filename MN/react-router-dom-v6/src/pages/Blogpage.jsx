@@ -83,7 +83,7 @@ const BlogPage = () => {
           </Link>
         </button>
       </div>
-      {loading && <Loader />}
+      {loading && <Loader text={'Loading posts...'} />}
       {error && <Error error={error} />}
       {posts && (
         <>
