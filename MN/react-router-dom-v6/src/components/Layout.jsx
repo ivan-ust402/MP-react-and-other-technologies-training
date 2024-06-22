@@ -34,7 +34,7 @@ const Layout = () => {
           Blog
         </NavLink>
         <NavLink 
-          to="/search-posts?_page=1&limit=15" 
+          to="/search-posts?_page=1&_limit=15" 
           style={setActiveStyles}
         >
           Search

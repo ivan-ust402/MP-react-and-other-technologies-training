@@ -3,12 +3,10 @@ import { Link } from "react-router-dom"
 
 const PaginationForSearch = React.memo(
   ({ pageCount, setPage, currentPage, limit, search }) => {
-    // console.log("pagination")
     const pageNumbers = []
     for (let i = 1; i <= pageCount; i++) {
       pageNumbers.push(i)
     }
-
     return (
       <>
         {!!pageCount && (
