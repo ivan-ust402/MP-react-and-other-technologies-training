@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 const PaginationForSearch = React.memo(
-  ({ pageCount, setPage, currentPage, limit, search }) => {
+  ({ pageCount, setPage, currentPage, limit, search, latest }) => {
     const pageNumbers = []
     for (let i = 1; i <= pageCount; i++) {
       pageNumbers.push(i)
@@ -19,9 +19,9 @@ const PaginationForSearch = React.memo(
                     textDecoration: "none",
                     cursor: currentPage === number ? "default" : "pointer",
                   }}
-                  to={ search 
-                    ? `/search-posts?_page=${number}&_limit=${limit}&search=${search}` 
-                    : `/search-posts?_page=${number}&_limit=${limit}`
+                  to={ latest 
+                    ? `/search-posts?_page=${number}&_limit=${limit}&search=${search}&latest=${latest}` 
+                    : `/search-posts?_page=${number}&_limit=${limit}&search=${search}`
                   }
                   onClick={() => setPage(number)}
                 >

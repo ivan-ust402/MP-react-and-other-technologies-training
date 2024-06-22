@@ -14,19 +14,30 @@ const SearchPage = () => {
   // Get query params
   const [searchParams, setSearchParam] = useSearchParams()
   const postQuery = searchParams.get("search") || ""
+  const latest = searchParams.has('latest')
   const page = Number(searchParams.get("_page")) || 1
   const limit = Number(searchParams.get("_limit")) || 15
 
   // State of greeting
   const [greeting, setGreeting] = useState(false)
 
-  // State of input
+  // State of inputs
   const [inputValue, setInputValue] = useState("")
+  const [checkboxValue, setCheckboxValue] = useState(false)
 
   // State of pagination
   const [totalPosts, setTotalPosts] = useState(null)
   const countPages = Math.ceil(totalPosts / limit)
 
+  // Variable to display the last 20 posts 
+  const startsFrom = latest ? 80 : 1 
+  /**
+   * Simulate pagination function
+   * @param {Array} posts 
+   * @param {number} currPage 
+   * @param {number} countPostsPerPage 
+   * @returns Array
+   */
   const calculatePostsPerPage = (posts, currPage, countPostsPerPage) => {
     const tempArr = []
     const start = (currPage - 1) * countPostsPerPage
@@ -46,10 +57,10 @@ const SearchPage = () => {
   useEffect(() => {
     setGreeting(false)
     setLoading(true)
-    console.log(greeting)
     setError("")
     setPosts(null)
     setInputValue("")
+    setCheckboxValue(false)
     fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then(async (response) => {
         await new Promise((res) => {
@@ -66,27 +77,35 @@ const SearchPage = () => {
           setGreeting(true)
         } else {
           filteredPosts = data.filter((post) => {
-            return post.title.toLowerCase().includes(postQuery)
+            return post.title.toLowerCase().includes(postQuery) && post.id > startsFrom
           })
+          console.log(filteredPosts)
         }
+        
         const pagePosts = calculatePostsPerPage(filteredPosts, page, limit)
         setLoading(false)
         setPosts(pagePosts)
         setTotalPosts(filteredPosts.length)
         setInputValue(postQuery)
+        setCheckboxValue(latest)
       })
       .catch((e) => {
         setLoading(false)
         setError(e)
         setInputValue("")
       })
-  }, [page, postQuery, limit])
+  }, [page, postQuery, limit, latest, startsFrom])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target
     const query = form.search.value
-    setSearchParam({ _page: 1, _limit: 15, search: query })
+    const isLatest = form.latest.checked
+
+    const params = {_page: 1, _limit: 15}
+    if(query.length) params.search = query
+    if(isLatest) params.latest = isLatest
+    setSearchParam(params)
   }
   return (
     <>
@@ -101,6 +120,13 @@ const SearchPage = () => {
             setInputValue(filter)
           }}
         />
+        <label className="label">
+          <input type="checkbox" name="latest" checked={checkboxValue} onChange={(e) => {
+            const filter = e.target.checked
+            setCheckboxValue(filter)
+          }}/>
+          New only
+        </label>
         <button className="search-btn btn" type="submit">
           Search
         </button>
@@ -119,6 +145,7 @@ const SearchPage = () => {
                       page,
                       limit,
                       search: postQuery,
+                      latest
                     }}
                   >
                     {index + 1 + (page - 1) * limit}. {post.title}
@@ -132,6 +159,7 @@ const SearchPage = () => {
                         page,
                         limit,
                         search: postQuery,
+                        latest
                       }}
                     >
                       Edit Post
@@ -146,6 +174,7 @@ const SearchPage = () => {
               currentPage={page}
               limit={limit}
               search={postQuery}
+              latest={latest}
             />
           </>
         ) 

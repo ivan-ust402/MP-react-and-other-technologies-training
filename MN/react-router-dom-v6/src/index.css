@@ -238,6 +238,13 @@ main a:hover {
   flex-grow: 1;
 }
 
+.label {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  white-space: nowrap
+}
+
 @media (hover: hover) {
   .btn:hover {
     opacity: 0.8;

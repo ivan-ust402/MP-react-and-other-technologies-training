@@ -38,12 +38,12 @@ const PostPageForSearch = () => {
       {loading && <Loader />}
       {error && <Error error={error} />}
       {post && (
-        <>
+        <div>
           <button 
             onClick={() => {
-              locationState?.search 
+              locationState?.latest
               ? navigate(
-                `/search-posts?_page=${locationState.page}&_limit=${locationState.limit}&search=${locationState.search}`,
+                `/search-posts?_page=${locationState.page}&_limit=${locationState.limit}&search=${locationState.search}&latest=${locationState.latest}`,
                 {
                   replace: false, 
                 }
@@ -70,7 +70,7 @@ const PostPageForSearch = () => {
               Edit Post
             </Link>
           </button>
-        </>
+        </div>
       )}
     </>
   )
