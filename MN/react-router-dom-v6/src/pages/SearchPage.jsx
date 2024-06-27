@@ -22,10 +22,6 @@ const SearchPage = () => {
   // State of greeting
   const [greeting, setGreeting] = useState(false)
 
-  // State of inputs
-  const [inputValue, setInputValue] = useState("")
-  const [checkboxValue, setCheckboxValue] = useState(false)
-
   // State of pagination
   const [totalPosts, setTotalPosts] = useState(null)
   const countPages = Math.ceil(totalPosts / limit)
@@ -59,8 +55,6 @@ const SearchPage = () => {
     setLoading(true)
     setError("")
     setPosts(null)
-    setInputValue("")
-    setCheckboxValue(false)
     fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then(async (response) => {
         await new Promise((res) => {
@@ -82,20 +76,16 @@ const SearchPage = () => {
               post.id > startsFrom
             )
           })
-          console.log(filteredPosts)
         }
 
         const pagePosts = calculatePostsPerPage(filteredPosts, page, limit)
         setLoading(false)
         setPosts(pagePosts)
         setTotalPosts(filteredPosts.length)
-        setInputValue(postQuery)
-        setCheckboxValue(latest)
       })
       .catch((e) => {
         setLoading(false)
         setError(e)
-        setInputValue("")
       })
   }, [page, postQuery, limit, latest, startsFrom])
 
@@ -103,10 +93,8 @@ const SearchPage = () => {
     <>
       <SearchFilter
         setSearchParam={setSearchParam}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        checkboxValue={checkboxValue}
-        setCheckboxValue={setCheckboxValue}
+        postQuery={postQuery}
+        latest={latest}
       />
       {loading && <Loader text={"Loading..."} />}
       {error && <Error />}

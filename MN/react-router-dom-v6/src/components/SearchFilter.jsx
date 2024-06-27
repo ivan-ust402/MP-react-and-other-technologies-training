@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const SearchFilter = ({setSearchParam, inputValue, setInputValue, checkboxValue, setCheckboxValue}) => {
+const SearchFilter = ({setSearchParam, postQuery, latest}) => {
+  // State of inputs
+  const [inputValue, setInputValue] = useState(postQuery) || ''
+  const [checkboxValue, setCheckboxValue] = useState(latest) || false
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target
