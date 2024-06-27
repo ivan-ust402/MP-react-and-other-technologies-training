@@ -2,7 +2,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Navigate,
-  Route
+  Route,
 } from "react-router-dom"
 import { AboutPage } from "../pages/AboutPage"
 import { NotFoundPage } from "../pages/NotFoundPage"
@@ -13,13 +13,12 @@ import { CreatePostPage } from "../pages/CreatePostPage"
 import { EditPostPage } from "../pages/EditPostPage"
 import { LoginPage } from "../pages/LoginPage"
 import { RequireAuth } from "../hoc/RequireAuth"
-import { BlogPage } from "../pages/BlogPage"
+import { blogLoader, BlogPage } from "../pages/BlogPage"
 import { SearchPage } from "../pages/SearchPage"
 import { PostPageForSearch } from "../pages/PostPageForSearch"
 import { EditPostPageForSearch } from "../pages/EditPostPageForSearch"
 import { Contacts } from "../components/Contacts"
 import { Team } from "../components/Team"
-
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,7 +33,11 @@ export const router = createBrowserRouter(
           </RequireAuth>
         }
       />
-      <Route path="posts/:_page?/:_limit?" element={<BlogPage />} />
+      <Route
+        path="posts/:_page?/:_limit?"
+        element={<BlogPage />}
+        loader={blogLoader}
+      />
       <Route
         path="posts/create"
         element={

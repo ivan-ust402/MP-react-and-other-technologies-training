@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react"
-import { Link, useLocation, useSearchParams } from "react-router-dom"
+import { Link, useLoaderData, useLocation, useSearchParams } from "react-router-dom"
 import Loader from "../components/Loader"
 import Error from "../components/Error"
 import { Pagination } from "../components/Pagination"
 
 const BlogPage = () => {
   const location = useLocation()
+  const posts = useLoaderData()
 
   // Параметры запроса для пагинации
   const searchParams = new URLSearchParams(location.search)
@@ -14,9 +15,9 @@ const BlogPage = () => {
   // console.log("page: ", page)
   // console.log("limit: ", limit)
 
-  const [posts, setPosts] = useState(null)
+  // const [posts, setPosts] = useState(null)
   const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const [totalPosts, setTotalPosts] = useState(null)
   const delay = 100
 
@@ -42,32 +43,32 @@ const BlogPage = () => {
       })
   }, [])
 
-  useEffect(() => {
-    setLoading(true)
-    setError("")
-    setPosts([])
-    setCurrentPage(page)
-    setPostsPerPage(limit)
-    // location.state = {page: currentPage, limit: postsPerPage}
+  // useEffect(() => {
+  //   setLoading(true)
+  //   setError("")
+  //   setPosts([])
+  //   setCurrentPage(page)
+  //   setPostsPerPage(limit)
+  //   // location.state = {page: currentPage, limit: postsPerPage}
 
-    fetch(
-      `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}&_limit=${postsPerPage}`
-    )
-      .then(async (response) => {
-        await new Promise((res) => {
-          setTimeout(res, delay)
-        })
-        setLoading(false)
-        setError("")
-        return response.json()
-      })
-      .then((json) => setPosts(json))
-      .catch((e) => {
-        setLoading(false)
-        setPosts([])
-        return setError(e.message)
-      })
-  }, [currentPage, limit, location, page, postsPerPage])
+  //   fetch(
+  //     `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}&_limit=${postsPerPage}`
+  //   )
+  //     .then(async (response) => {
+  //       await new Promise((res) => {
+  //         setTimeout(res, delay)
+  //       })
+  //       setLoading(false)
+  //       setError("")
+  //       return response.json()
+  //     })
+  //     .then((json) => setPosts(json))
+  //     .catch((e) => {
+  //       setLoading(false)
+  //       setPosts([])
+  //       return setError(e.message)
+  //     })
+  // }, [currentPage, limit, location, page, postsPerPage])
 
   const countPages = Math.ceil(totalPosts / postsPerPage)
 
@@ -83,7 +84,7 @@ const BlogPage = () => {
           </Link>
         </button>
       </div>
-      {loading && <Loader text={'Loading posts...'} />}
+      {/* {loading && <Loader text={'Loading posts...'} />} */}
       {error && <Error error={error} />}
       {posts && (
         <>
@@ -124,4 +125,12 @@ const BlogPage = () => {
   )
 }
 
-export { BlogPage }
+const blogLoader = async({ request, params }) => {
+  console.log({ request, params })
+  const res = await fetch(
+      `https://jsonplaceholder.typicode.com/posts?_page=${params._page}&_limit=${params._limit}`
+    )
+    return res.json()
+  }
+
+export { BlogPage, blogLoader }
