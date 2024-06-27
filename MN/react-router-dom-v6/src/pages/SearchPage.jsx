@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom"
 import Loader from "../components/Loader"
 import Error from "../components/Error"
 import { PaginationForSearch } from "../components/PaginationForSearch"
+import { SearchFilter } from "../components/SearchFilter"
 
 const SearchPage = () => {
   // State of request
@@ -14,7 +15,7 @@ const SearchPage = () => {
   // Get query params
   const [searchParams, setSearchParam] = useSearchParams()
   const postQuery = searchParams.get("search") || ""
-  const latest = searchParams.has('latest')
+  const latest = searchParams.has("latest")
   const page = Number(searchParams.get("_page")) || 1
   const limit = Number(searchParams.get("_limit")) || 15
 
@@ -29,13 +30,13 @@ const SearchPage = () => {
   const [totalPosts, setTotalPosts] = useState(null)
   const countPages = Math.ceil(totalPosts / limit)
 
-  // Variable to display the last 20 posts 
-  const startsFrom = latest ? 80 : 1 
+  // Variable to display the last 20 posts
+  const startsFrom = latest ? 80 : 1
   /**
    * Simulate pagination function
-   * @param {Array} posts 
-   * @param {number} currPage 
-   * @param {number} countPostsPerPage 
+   * @param {Array} posts
+   * @param {number} currPage
+   * @param {number} countPostsPerPage
    * @returns Array
    */
   const calculatePostsPerPage = (posts, currPage, countPostsPerPage) => {
@@ -53,7 +54,6 @@ const SearchPage = () => {
     return tempArr
   }
 
-  
   useEffect(() => {
     setGreeting(false)
     setLoading(true)
@@ -77,11 +77,14 @@ const SearchPage = () => {
           setGreeting(true)
         } else {
           filteredPosts = data.filter((post) => {
-            return post.title.toLowerCase().includes(postQuery) && post.id > startsFrom
+            return (
+              post.title.toLowerCase().includes(postQuery) &&
+              post.id > startsFrom
+            )
           })
           console.log(filteredPosts)
         }
-        
+
         const pagePosts = calculatePostsPerPage(filteredPosts, page, limit)
         setLoading(false)
         setPosts(pagePosts)
@@ -96,44 +99,19 @@ const SearchPage = () => {
       })
   }, [page, postQuery, limit, latest, startsFrom])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const form = e.target
-    const query = form.search.value
-    const isLatest = form.latest.checked
-
-    const params = {_page: 1, _limit: 15}
-    if(query.length) params.search = query
-    if(isLatest) params.latest = isLatest
-    setSearchParam(params)
-  }
   return (
     <>
-      <form className="search" onSubmit={handleSubmit}>
-        <input
-          className="search-input"
-          type="search"
-          name="search"
-          value={inputValue}
-          onChange={(e) => {
-            const filter = e.target.value
-            setInputValue(filter)
-          }}
-        />
-        <label className="label">
-          <input type="checkbox" name="latest" checked={checkboxValue} onChange={(e) => {
-            const filter = e.target.checked
-            setCheckboxValue(filter)
-          }}/>
-          New only
-        </label>
-        <button className="search-btn btn" type="submit">
-          Search
-        </button>
-      </form>
-      {loading && <Loader text={'Loading...'}/>}
+      <SearchFilter
+        setSearchParam={setSearchParam}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        checkboxValue={checkboxValue}
+        setCheckboxValue={setCheckboxValue}
+      />
+      {loading && <Loader text={"Loading..."} />}
       {error && <Error />}
-      {posts && (posts.length > 0 && !loading ? (
+      {posts &&
+        (posts.length > 0 && !loading ? (
           <>
             <ul className="list">
               {posts.map((post, index) => (
@@ -145,7 +123,7 @@ const SearchPage = () => {
                       page,
                       limit,
                       search: postQuery,
-                      latest
+                      latest,
                     }}
                   >
                     {index + 1 + (page - 1) * limit}. {post.title}
@@ -159,7 +137,7 @@ const SearchPage = () => {
                         page,
                         limit,
                         search: postQuery,
-                        latest
+                        latest,
                       }}
                     >
                       Edit Post
@@ -177,13 +155,13 @@ const SearchPage = () => {
               latest={latest}
             />
           </>
-        ) 
-        : !greeting 
-        ? (
-          <div className="info-text">No posts were found matching your request.</div>
-        )
-        : <div className="info-text">Let's Try To Search!!!</div>)
-      }
+        ) : !greeting ? (
+          <div className="info-text">
+            No posts were found matching your request.
+          </div>
+        ) : (
+          <div className="info-text">Let's Try To Search!!!</div>
+        ))}
     </>
   )
 }

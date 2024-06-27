@@ -8,7 +8,7 @@ const PostPageForSearch = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const { state: locationState } = useLocation()
-  // console.log("post state", locationState)
+  console.log("post state", locationState)
   const [post, setPost] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -49,7 +49,7 @@ const PostPageForSearch = () => {
                 }
               )
               : navigate(
-                `/search-posts?_page=${locationState.page}&_limit=${locationState.limit}`,
+                `/search-posts?_page=${locationState.page}&_limit=${locationState.limit}&search=${locationState.search}`,
                 {
                   replace: false, 
                 }
