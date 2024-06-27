@@ -39,9 +39,9 @@ const Layout = () => {
         >
           Search
         </NavLink>
-        <NavLink className={setActiveClassName} to="/about-us">
+        <CustomLink className={setActiveClassName} to="/about-us">
           About
-        </NavLink>
+        </CustomLink>
         {user ? <button onClick={hadlerSignOut} className="btn_secondary" >Sign Out</button>: <button className="btn_secondary"><Link className="btn-link_secondary" to={'login'} state={{from: fromPage}}>Sign In</Link></button>}
       </header>
       <main className="container">

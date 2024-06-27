@@ -14,6 +14,8 @@ import { BlogPage } from "./pages/BlogPage"
 import { SearchPage } from "./pages/SearchPage"
 import { PostPageForSearch } from "./pages/PostPageForSearch"
 import { EditPostPageForSearch } from "./pages/EditPostPageForSearch"
+import { Contacts } from "./components/Contacts"
+import { Team } from "./components/Team"
 
 const App = () => {
   return (
@@ -41,10 +43,13 @@ const App = () => {
               }
             />
             <Route path="posts/create/edit" element={<NotFoundPage />} />
-            <Route path="about-us" element={<AboutPage />} />
+            <Route path="about-us/*" element={<AboutPage />}>
+              <Route path="contacts" element={<Contacts />} />
+              <Route path="team" element={<Team />} />
+            </Route>
             <Route
-              path="about"
-              element={<Navigate to={"/about-us"} replace />}
+              path="about/*"
+              element={<Navigate to={"/about-us/*"} replace />}
             ></Route>
             <Route path="search-posts/:id" element={<PostPageForSearch />} />
             <Route
@@ -68,4 +73,4 @@ const App = () => {
   )
 }
 
-export { App } 
+export { App }

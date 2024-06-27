@@ -179,10 +179,6 @@ main a:hover {
   gap: 5px;
 }
 
-.pagination-item {
-  
-}
-
 .pagination-btn {
   border: 1px solid black;
   padding: 5px;
@@ -243,6 +239,33 @@ main a:hover {
   gap: 5px;
   align-items: center;
   white-space: nowrap
+}
+
+.about-tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 30px;
+}
+.about-tabs li {
+  list-style-type: disc;
+}
+
+.about-tab-window {
+  display: flex;
+  padding-top: 30px;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+
 }
 
 @media (hover: hover) {
