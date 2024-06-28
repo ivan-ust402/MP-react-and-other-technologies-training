@@ -143,9 +143,10 @@ main a:hover {
   padding: 5px 15px;
   border-radius: 10px;
   transition: all .3s ease-in;
-  min-width: fit-content;
+  max-width: fit-content;
   color: white;
   cursor: pointer;
+  white-space: nowrap;
 }
 .btn_secondary {
   background-color: buttonface;

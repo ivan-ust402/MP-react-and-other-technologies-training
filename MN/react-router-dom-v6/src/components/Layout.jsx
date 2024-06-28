@@ -34,6 +34,12 @@ const Layout = () => {
           Blog
         </NavLink>
         <NavLink 
+          to="/posts-v2?_page=1&_limit=15" 
+          style={setActiveStyles}
+        >
+          Blog Ver.2
+        </NavLink>
+        <NavLink 
           to="/search-posts?_page=1&_limit=15" 
           style={setActiveStyles}
         >

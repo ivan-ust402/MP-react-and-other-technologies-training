@@ -13,12 +13,14 @@ import { CreatePostPage } from "../pages/CreatePostPage"
 import { EditPostPage } from "../pages/EditPostPage"
 import { LoginPage } from "../pages/LoginPage"
 import { RequireAuth } from "../hoc/RequireAuth"
-import { blogLoader, BlogPage } from "../pages/BlogPage"
+import { BlogPage } from "../pages/BlogPage"
 import { SearchPage } from "../pages/SearchPage"
 import { PostPageForSearch } from "../pages/PostPageForSearch"
 import { EditPostPageForSearch } from "../pages/EditPostPageForSearch"
 import { Contacts } from "../components/Contacts"
 import { Team } from "../components/Team"
+import { postLoader, PostPageUseLoader } from "../pages/PostPageUseLoader"
+import { blogLoader, BlogPageUseLoader } from "../pages/BlogPageUseLoader"
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,7 +38,6 @@ export const router = createBrowserRouter(
       <Route
         path="posts/:_page?/:_limit?"
         element={<BlogPage />}
-        loader={blogLoader}
       />
       <Route
         path="posts/create"
@@ -47,6 +48,13 @@ export const router = createBrowserRouter(
         }
       />
       <Route path="posts/create/edit" element={<NotFoundPage />} />
+
+      <Route path="posts-v2/:id" element={<PostPageUseLoader />}loader={postLoader}  />
+      <Route
+        path="posts-v2/:_page?/:_limit?"
+        element={<BlogPageUseLoader />} loader={blogLoader}
+      />
+
       <Route path="about-us/*" element={<AboutPage />}>
         <Route path="contacts" element={<Contacts />} />
         <Route path="team" element={<Team />} />

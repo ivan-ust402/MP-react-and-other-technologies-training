@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const Pagination = React.memo(({ pageCount, setPage, currentPage, limit }) => {
+const Pagination = React.memo(({ pageCount, setPage, currentPage, limit, routePart }) => {
   // console.log("pagination")
   const pageNumbers = []
   for (let i = 1; i <= pageCount; i++) {
@@ -20,7 +20,7 @@ const Pagination = React.memo(({ pageCount, setPage, currentPage, limit }) => {
                   textDecoration: "none",
                   cursor: currentPage === number ? "default" : "pointer",
                 }}
-                to={`/posts?_page=${number}&_limit=${limit}`}
+                to={`/${routePart}?_page=${number}&_limit=${limit}`}
                 onClick={() => setPage(number)}
               >
                 <button
