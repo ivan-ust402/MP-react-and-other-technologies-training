@@ -35,10 +35,7 @@ export const router = createBrowserRouter(
           </RequireAuth>
         }
       />
-      <Route
-        path="posts/:_page?/:_limit?"
-        element={<BlogPage />}
-      />
+      <Route path="posts/:_page?/:_limit?" element={<BlogPage />} />
       <Route
         path="posts/create"
         element={
@@ -49,10 +46,15 @@ export const router = createBrowserRouter(
       />
       <Route path="posts/create/edit" element={<NotFoundPage />} />
 
-      <Route path="posts-v2/:id" element={<PostPageUseLoader />}loader={postLoader}  />
+      <Route
+        path="posts-v2/:id"
+        element={<PostPageUseLoader />}
+        loader={postLoader}
+      />
       <Route
         path="posts-v2/:_page?/:_limit?"
-        element={<BlogPageUseLoader />} loader={blogLoader}
+        element={<BlogPageUseLoader />}
+        loader={blogLoader}
       />
 
       <Route path="about-us/*" element={<AboutPage />}>

@@ -34,7 +34,7 @@ const BlogPageUseLoader = () => {
           </Link>
         </button>
       </div>
-      <Suspense fallback={<Loader text={'Loading...'}/>}>
+      <Suspense fallback={<Loader text={'Loading posts...'}/>}>
         <Await resolve={posts}>
           {(resolvedPosts) => (
               <ul className="list">
