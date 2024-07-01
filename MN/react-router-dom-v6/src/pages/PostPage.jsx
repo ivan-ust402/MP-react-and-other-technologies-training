@@ -39,9 +39,9 @@ const PostPage = () => {
       {error && <Error error={error} />}
       {post && (
         <>
-          <button onClick={() => navigate(`/posts?_page=${locationState.page}&_limit=${locationState.limit}`, {replace: false, })} className="btn">
+          {locationState.page && <button onClick={() => navigate(`/posts?_page=${locationState.page}&_limit=${locationState.limit}`, {replace: false, })} className="btn">
               Come back
-          </button>
+          </button>}
           <PostCard post={post} />
           <button className="btn">
             <Link

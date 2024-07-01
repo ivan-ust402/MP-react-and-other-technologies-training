@@ -70,60 +70,60 @@ const BlogPage = () => {
 
   const countPages = Math.ceil(totalPosts / postsPerPage)
 
-
-
   return (
     <>
       <h1>Our company posts and articles</h1>
       <div className="controls">
         <button className="btn">
-          <Link className="btn-link" to={"/posts/create"}>
+          <Link
+            className="btn-link"
+            to={"/posts/create"}
+            state={{ page: currentPage, limit: postsPerPage }}
+          >
             Create New Post
           </Link>
         </button>
       </div>
-      {loading && <Loader text={'Loading posts...'} />}
+      {loading && <Loader text={"Loading posts..."} />}
       {error && <Error error={error} />}
       {posts && (
         <>
           <ul className="list">
             {posts.map((post, index) => (
-                <li className="list-item" key={post.id}>
-                  <Link
-                    className="list-item-title"
-                    to={`${post.id}`}
-                    state={{ page: currentPage, limit: postsPerPage }}
-                  >
-                    {index + 1 + (currentPage - 1) * postsPerPage}. {post.title}
-                  </Link>
-                  {/* <div className="list-item-title" onClick={() => navigate(`${post.id}`, {state: {page: currentPage, limit: postsPerPage}})}>
+              <li className="list-item" key={post.id}>
+                <Link
+                  className="list-item-title"
+                  to={`${post.id}`}
+                  state={{ page: currentPage, limit: postsPerPage }}
+                >
+                  {index + 1 + (currentPage - 1) * postsPerPage}. {post.title}
+                </Link>
+                {/* <div className="list-item-title" onClick={() => navigate(`${post.id}`, {state: {page: currentPage, limit: postsPerPage}})}>
                   {index + 1 + (currentPage - 1) * postsPerPage}. {post.title}
                 </div> */}
-                  <button className="btn">
-                    <Link
-                      className="btn-link"
-                      id={post.id}
-                      to={`/posts/${post.id}/edit`}
-                    >
-                      Edit Post
-                    </Link>
-                  </button>
-                </li>
-              ))}
+                <button className="btn">
+                  <Link
+                    className="btn-link"
+                    id={post.id}
+                    to={`/posts/${post.id}/edit`}
+                  >
+                    Edit Post
+                  </Link>
+                </button>
+              </li>
+            ))}
           </ul>
           <Pagination
             pageCount={countPages}
             setPage={setCurrentPage}
             currentPage={currentPage}
             limit={postsPerPage}
-            routePart={'posts'}
+            routePart={"posts"}
           />
         </>
       )}
     </>
   )
 }
-
-
 
 export { BlogPage }

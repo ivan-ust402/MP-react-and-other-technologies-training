@@ -9,7 +9,7 @@ import { NotFoundPage } from "../pages/NotFoundPage"
 import { Layout } from "../components/Layout"
 import { PostPage } from "../pages/PostPage"
 import { HomePage } from "../pages/HomePage"
-import { CreatePostPage } from "../pages/CreatePostPage"
+import { createPostAction, CreatePostPage } from "../pages/CreatePostPage"
 import { EditPostPage } from "../pages/EditPostPage"
 import { LoginPage } from "../pages/LoginPage"
 import { RequireAuth } from "../hoc/RequireAuth"
@@ -22,6 +22,7 @@ import { Team } from "../components/Team"
 import { postLoader, PostPageUseLoader } from "../pages/PostPageUseLoader"
 import { blogLoader, BlogPageUseLoader } from "../pages/BlogPageUseLoader"
 import { ErrorPage } from "../pages/ErrorPage"
+import { NewPost } from "../components/NewPost"
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -44,6 +45,7 @@ export const router = createBrowserRouter(
             <CreatePostPage />
           </RequireAuth>
         }
+        action={createPostAction}
       />
       <Route path="posts/create/edit" element={<NotFoundPage />} />
 

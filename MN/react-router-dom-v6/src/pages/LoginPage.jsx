@@ -21,11 +21,11 @@ const LoginPage = () => {
     <div>
       <h1>Login page</h1>
       {/* {fromPage} */}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name: <input type="text" name="username"/>
+      <form className='login-form' onSubmit={handleSubmit}>
+        <label className="label">
+          Name: <input  className="input" type="text" name="username"/>
         </label>
-        <button type="submit">Sign In</button>
+        <button  className="btn" type="submit">Sign In</button>
       </form>
     </div>
   )
