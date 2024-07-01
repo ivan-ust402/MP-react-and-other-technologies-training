@@ -34,7 +34,7 @@ const createPostAction = async ({request}) => {
     setTimeout(resolve, 500)
   })
 
-  return redirect('/posts/' + post.id, )
+  return redirect('/posts/' + post.id )
 }
 
 export { CreatePostPage, createPostAction };
