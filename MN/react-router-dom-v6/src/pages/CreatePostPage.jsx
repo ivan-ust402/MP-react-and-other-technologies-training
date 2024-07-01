@@ -24,6 +24,9 @@ const createPost = async ({title, body, userId}) => {
 
 const createPostAction = async ({request}) => {
   const formData = await request.formData();
+  // for (const pair of formData.entries()) {
+  //   console.log(pair[0] + ': ' + pair[1])
+  // }
   const newPost = {
     title: formData.get("title"),
     body: formData.get('body'),
@@ -34,7 +37,7 @@ const createPostAction = async ({request}) => {
     setTimeout(resolve, 500)
   })
 
-  return redirect('/posts/' + post.id )
+  return redirect('/posts/' + (post.id - 1) )
 }
 
 export { CreatePostPage, createPostAction };

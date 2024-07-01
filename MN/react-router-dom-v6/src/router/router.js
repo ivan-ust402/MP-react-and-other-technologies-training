@@ -10,7 +10,7 @@ import { Layout } from "../components/Layout"
 import { PostPage } from "../pages/PostPage"
 import { HomePage } from "../pages/HomePage"
 import { createPostAction, CreatePostPage } from "../pages/CreatePostPage"
-import { EditPostPage } from "../pages/EditPostPage"
+import { EditPostPage, updatePostAction } from "../pages/EditPostPage"
 import { LoginPage } from "../pages/LoginPage"
 import { RequireAuth } from "../hoc/RequireAuth"
 import { BlogPage } from "../pages/BlogPage"
@@ -36,6 +36,8 @@ export const router = createBrowserRouter(
             <EditPostPage />
           </RequireAuth>
         }
+        loader={postLoader}
+        action={updatePostAction}
       />
       <Route path="posts/:_page?/:_limit?" element={<BlogPage />} />
       <Route
