@@ -5,6 +5,7 @@ import {
   useLocation,
   Await,
   defer,
+  json,
 } from "react-router-dom"
 import { Pagination } from "../components/Pagination"
 import Loader from "../components/Loader"
@@ -82,11 +83,15 @@ const BlogPageUseLoader = () => {
 
 async function getPosts(inputPage, inputLimit) {
   const pagePosts = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?_page=${inputPage}&_limit=${inputLimit}`
+    `https://jsonplaceholder.typicode.com/postls?_page=${inputPage}&_limit=${inputLimit}`
   )
   await new Promise((resolve, reject) => {
     setTimeout(resolve, 500)
   })
+
+  // if(!pagePosts.ok) {
+  //   throw new Response('', { status: pagePosts.status, statusText: 'Not Found!'})
+  // }
   return pagePosts.json()
 }
 
@@ -103,8 +108,12 @@ const blogLoader = async ({ request }) => {
   const url = new URL(request.url)
   const page = url.searchParams.get("_page")
   const limit = url.searchParams.get("_limit")
+  const posts = getPosts()
+  if (!posts.length) {
+    throw json({message: 'Not Found', reason: 'Wrong url'}, {status: '404'})
+  }
   return defer({ 
-    posts: getPosts(page, limit), 
+    posts, 
     totalLength: getAllPosts()
   })
 }

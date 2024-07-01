@@ -21,10 +21,11 @@ import { Contacts } from "../components/Contacts"
 import { Team } from "../components/Team"
 import { postLoader, PostPageUseLoader } from "../pages/PostPageUseLoader"
 import { blogLoader, BlogPageUseLoader } from "../pages/BlogPageUseLoader"
+import { ErrorPage } from "../pages/ErrorPage"
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
       <Route index element={<HomePage />} />
       <Route path="posts/:id" element={<PostPage />} />
       <Route

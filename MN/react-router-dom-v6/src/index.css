@@ -76,6 +76,8 @@ main a:hover {
 }
 
 .error {
+  display: flex;
+  flex-direction: column;
   color: red;
   font-size: 45px;
   display: flex;
@@ -280,6 +282,8 @@ main a:hover {
   flex-direction: column;
   gap: 8px;
 }
+
+
 
 @media (hover: hover) {
   .btn:hover {
