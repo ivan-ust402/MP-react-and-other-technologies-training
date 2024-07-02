@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# React+react-router-dom library.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Decription (Описание (RU))
+Данное SPA создано на базе реакта и библиотеки react-router-dom version 6. В шапке приложения применяется навигация по страницам: HomePage, BlogPage, BlogPage version 2, Search, AboutPage. 
 
-## Available Scripts
+На странице BlogPage при загрузке данных с сервера реализованы состояния загрузки: в случае загрузки отображается компонент Loader, неудачной загрузки - компонент Error, успешной загрузки - отображение лимитированных данных с использованием постраничной пагинации. Также на данной странице присутствует кнопка создания нового поста, реализован роут на страницу создания нового поста, а также функциональность создания поста. Каждый полученный пост на странице BlogPage представлен в виде ссылки, при нажатии на которую происходит роутинг на страницу конкретного поста. Помимо функциональности ссылки каждый пост имеет кнопку "Редактировать", при нажатии на которую происходит роутинг на страницу редактирования поста. Функционал редактирования, как и создания нового поста, рабочий с поправкой на то, что для данной практики был использован фэйковый сервер "JSON placeholder", который имеет урезанную версию работы с данными запросами (post, put), поэтому создание нового поста не приведет к ошибке, но выполнит редирект на пост с id = 100, а редактирование отсавит нас на странице редактирования поста но выведет сообщение об успешном выполнении запроса на редактирование. При отправке при редактировании страниц формы с пустыми полями, выведется сообщение о том, что все поля обязательны к заполнению и запрос на сервер не будет осуществлен(простейшая валидация).
 
-In the project directory, you can run:
+Страница BlogPageV2 - это та же страница, что и описана выше, с поправкой на то, что функционально загрузка постов происходит при помощи использования асинхронной функции loader (функция для предоставления данных элементу перед его рендерингом). Также на примере данной вкладки были опробован новый функционал, предоставляемый react-router-dom: использование компонентов Form, Await (в связке с Suspense(React)), использование хелперов defer, json, redirect, хуков useLoaderData, useActionData, useAsyncValue, useNavigation.
 
-### `npm start`
+Страница Search - по сути схожа со страницей BlogPage, но при первоначальном переходе на данную страницу нам предлагается воспользоваться поисковой строкой. При вводе ключевого слова и нажатии на кнопку отправки происходит запрос к серверу, получение всех постов, а уже затем фильтрация на стороне клиента и выдача результатов поиска пользователю. Данный функционал реализован именно так, в связи с отсутствием у JSON placeholder функционала, работающего с searchParams. Также на странице реализован функционал выдачи постов в связке с ключевым словом, выдающий только свежие (в нашем случае последине: с 80 по 100(если ключевое слово будет в них содержаться)) посты.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+На странице AboutPage была отработана функциональность работы со вложенным роутингом. Она продемострирована на работе двух вкладок размещенных на данной страницы - это наши контакты и наша команда.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+В шапке приложения присутствует кнопка SignIn/SignOut. Реализован простейший функционал авторизации в приложении. Данный функционал предоставил возможность поработать с приватными роутами редактирования и создания нового поста.
 
-### `npm test`
+В приложении также присутствует станица единичного поста, в которой реализована кнопка "ComeBack" и переход на страницу редактирования этого поста.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Еще одна страница, которая присутствует в приложении это страница NotFoundPage. Она появляется при ошибке в написании роутов.
 
-### `npm run build`
+Также есть страница при повлении ошибки ErrorPage.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Подводя итог можно сказать следующее: огромный блок функционала данной библиотеки был мною хорошо освоен по мере создания данного приложения.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Description (EN)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies used
+* react
+* react-router-dom
+## Visual display of the application's operation
 
-### `npm run eject`
+![Picture 1](./src/assets/project_description/2024-05-29_00-48-02.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Picture 1. Loading stage 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Picture 2](./src/assets/project_description/2024-05-29_00-48-29.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Picture 2. loading success stage 
 
-## Learn More
+![Picture 3](./src/assets/project_description/2024-05-29_00-48-55.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Picture 3. Pagination work 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Picture 4](./src/assets/project_description/2024-05-29_00-49-54.png)
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Picture 4. loading failed stage
