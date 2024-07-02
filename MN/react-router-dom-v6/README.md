@@ -50,19 +50,92 @@ To summarize, we can say the following: a huge block of functionality of this li
 
 ## Visual display of the application's operation
 
-![Picture 1](./src/assets/project_description/2024-05-29_00-48-02.png)
+![Picture 1](./src/assets/project_description/0.%20HomePage.png)
 
-Picture 1. Loading stage 
+**Picture 1.** Homepage. Route: '/'. 
 
-![Picture 2](./src/assets/project_description/2024-05-29_00-48-29.png)
+![Picture 2](./src/assets/project_description/1.0%20BlogPage%20(Loading).png)
 
 
-Picture 2. loading success stage 
+**Picture 2.** BlogPage (Loading state). Route: '/posts?_page=1&_limit=15'.
 
-![Picture 3](./src/assets/project_description/2024-05-29_00-48-55.png)
+![Picture 3](./src/assets/project_description/1.1%20BlogPage.png)
 
-Picture 3. Pagination work 
+**Picture 3.** BlogPage.  Route: '/posts?_page=1&_limit=15'. 
 
-![Picture 4](./src/assets/project_description/2024-05-29_00-49-54.png)
+![Picture 4](./src/assets/project_description/1.2.0%20BlogPage,%20create%20new%20post%20.png)
 
-Picture 4. loading failed stage
+**Picture 4.** BlogPage. Creating new post.  Route: '/posts?_page=1&_limit=15'.
+
+![Picture 5](./src/assets/project_description/1.2.1%20CreatePostPage.png)
+
+**Picture 5.** CreatePostPage.  Route: '/posts/create.
+
+![Picture 6](./src/assets/project_description/1.3.0%20BlogPage,%20editing%20an%20existing%20post.png)
+
+**Picture 6.** BlogPage. Editing an existing post. Route: '/posts?_page=1&_limit=15.
+
+![Picture 7](./src/assets/project_description/1.3.1%20BlogPage,%20edit%20post%20page.png)
+
+**Picture 7.** EditPostPage. Route: '/posts/:id/edit'.
+
+![Picture 8](./src/assets/project_description/1.3.2%20BlogPage,%20Result%20message%20after%20editting%20post.png)
+
+**Picture 8.** EditPostPage. Result message after editting post. Route: '/posts/:id/edit'.
+
+![Picture 9](./src/assets/project_description/1.3.3%20BlogPage,%20Result%20message%20if%20form%20fields%20was%20empty.png)
+
+**Picture 9.** EditPostPage. Result message if form fields was empty. Route: '/posts/:id/edit'.
+
+![Picture 10](./src/assets/project_description/2.1%20BlogPage%20ver.2,%20use%20loader%20functionality.png)
+
+**Picture 10.** BlogPage version 2. Using loader functionality. Route: '/posts-v2?_page=1&_limit=15'. 
+
+![Picture 11](./src/assets/project_description/3.1%20SearchPage.png)
+
+**Picture 11.** SearchPage.  Route: '/search-posts?_page=1&_limit=15'.
+
+![Picture 12](./src/assets/project_description/3.2%20SearchPage,%20getting%20search%20results.png)
+
+**Picture 12.** SearchPage. Getting search results. Route: '/search-posts?_page=1&_limit=15&search=lorem'.
+
+![Picture 13](./src/assets/project_description/3.3%20SearchPage,%20getting%20search%20results%20with%20a%20checkbox%20set%20to%20display%20only%20the%20newest%20posts.png)
+
+**Picture 13.** SearchPage. Getting search results with a checkbox set to display only the newest posts. Route: '/search-posts?_page=1&_limit=15&search=lorem&latest=true'.
+
+![Picture 14](./src/assets/project_description/3.4%20SearchPage,%20getting%20another%20search%20results.png)
+
+**Picture 14.** SearchPage. Getting another search results. Route: '/search-posts?_page=1&_limit=15&search=es'.
+
+![Picture 15](./src/assets/project_description/3.5%20SearchPage,%20getting%20another%20search%20results%20with%20a%20checkbox%20set%20to%20display%20only%20the%20newest%20posts.png)
+
+**Picture 15.** SearchPage. Getting another search results with a checkbox set to display only the newest posts. Route: '/search-posts?_page=1&_limit=15&search=es&latest=true'.
+
+![Picture 16](./src/assets/project_description/3.6%20SearchPage,%20showing%20how%20pagination%20works.png)
+
+**Picture 16.** SearchPage. Showing how pagination works. Route: '/search-posts?_page=3&_limit=15&search=es'.
+
+![Picture 17](./src/assets/project_description/4.1%20AboutPage.png)
+
+**Picture 17.** AboutPage. Route: '/about-us'.
+
+![Picture 18](./src/assets/project_description/4.2%20AboutPage,%20showing%20company%20contacts.png)
+
+**Picture 18.** AboutPage. Showing company contacts. Route: '/about-us/contacts'.
+
+
+![Picture 19](./src/assets/project_description/4.3%20AboutPage,%20showing%20company%20team.png)
+
+**Picture 19.** AboutPage. Showing company team. Route: '/about-us/team'.
+
+![Picture 20](./src/assets/project_description/5.1%20LoginPage.png)
+
+**Picture 20.** LoginPage. Route: '/login'.
+
+![Picture 21](./src/assets/project_description/5.2%20LoginPage,%20redirect%20to%20homepage.png)
+
+**Picture 21.** LoginPage. Redirect to HomePage. Route: '/login'.
+
+![Picture 22](./src/assets/project_description/6.1%20Single%20post%20page.png)
+
+**Picture 22.** PostPage. Route: '/posts/:id'.
