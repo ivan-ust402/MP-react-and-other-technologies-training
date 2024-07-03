@@ -1,19 +1,49 @@
+import { useAuth } from "hooks/useAuth"
 import React from "react"
-import { Outlet } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom"
+import { removeUser } from "store/slices/userSlice"
 
 const Layout = () => {
-  // const {user, signIn, signOut} = useAuth()
-  // const hadlerSignOut = () => signOut(() => navigate(fromPage, {replace: true}))
+  const navigate = useNavigate()
+  const { isAuth } = useAuth()
+  const location = useLocation()
+  const fromPage = location.state?.from?.pathname || "/"
+  const dispatch = useDispatch()
+  const hadlerSignOut = () => {
+    dispatch(removeUser())
+    navigate("login", { replace: true })
+  }
+  const setActiveStyles = ({isActive}) => ({
+    color: isActive ? 'var(--color-active)' : '',
+    cursor: isActive ? 'default': ''})
   return (
     <>
       <header className="header">
-      {/* {user ? <button onClick={hadlerSignOut} className="btn_secondary" >Sign Out</button>: <button className="btn_secondary"><Link className="btn-link_secondary" to={'login'} state={{from: fromPage}}>Sign In</Link></button>} */}
+        <NavLink to="/" style={setActiveStyles}>Home</NavLink>
+        <NavLink to="/about" style={setActiveStyles}>About</NavLink>
+        {isAuth ? (
+          <button onClick={hadlerSignOut} className="btn_secondary">
+            Sign Out
+          </button>
+        ) : (
+          <button className="btn_secondary">
+            <Link
+              to={"login"}
+              state={{ from: fromPage }}
+            >
+              Sign In
+            </Link>
+          </button>
+        )}
       </header>
       <main className="container">
         <Outlet />
       </main>
       <footer className="footer">
-        <h3>&copy; React, Redux-toolkit, React-router-dom, firebase tutorial 2024</h3>
+        <h3>
+          &copy; React, Redux-toolkit, React-router-dom, firebase tutorial 2024
+        </h3>
       </footer>
     </>
   )

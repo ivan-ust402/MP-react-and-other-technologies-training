@@ -1,11 +1,11 @@
+import { useAuth } from 'hooks/useAuth';
 import React from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import SignInPage from './SignInPage';
 
 const HomePage = () => {
+  const {email} = useAuth()
   return (
     <h1>
-      Welcome to our application!
+      Welcome, {email}, to our application!
     </h1>
     
   );
