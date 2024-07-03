@@ -22,7 +22,6 @@ import { Team } from "../components/Team"
 import { postLoader, PostPageUseLoader } from "../pages/PostPageUseLoader"
 import { blogLoader, BlogPageUseLoader } from "../pages/BlogPageUseLoader"
 import { ErrorPage } from "../pages/ErrorPage"
-import { NewPost } from "../components/NewPost"
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
