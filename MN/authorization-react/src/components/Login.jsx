@@ -24,11 +24,12 @@ const Login = () => {
         }))
         navigate(from, {replace: true})
       })
-      .catch((error) => {
-        // const errorCode = error.code
-        // const errorMessage = error.message
-        console.log(error)
-      })
+      // .catch((error) => {
+      //   // const errorCode = error.code
+      //   // const errorMessage = error.message
+      //   console.log(error)
+      // })
+      .catch(() => alert('Invalid user'))
   }
   return <Form buttonValue="Sign In" handleClick={handleLogin}/>
 }
