@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# React, @reduxjs/toolkit, react-router-dom, firebase training course. Creating an application with user registration and authorization. 
+This application implements the functionality of registration and authorization of users to view the content of the application. Firebase was used as the backend of the application (authorization and registration functionality). The front-end part is implemented in React js using redux toolkit to create a store and routing provided by the react-router-dom library. The operation of this application can be assessed visually in the images presented below. Image captions provide a brief description of the user's scenario.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technologies used
+* react
+* react-redux
+* @reduxjs/toolkit
+* firebase
+## Visual display of the application's operation
+![Picture 1](./src/assets/project-description/1.%20First%20following%20a%20link.%20Redirect%20to%20sign%20In%20page.png)
 
-## Available Scripts
+**Picture 1.** First following a link.Redirect to Sign In page.
 
-In the project directory, you can run:
+![Picture 2](./src/assets/project-description/2.%20Go%20to%20the%20registration%20page.png)
 
-### `npm start`
+**Picture 2.** Go to the registration page.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Picture 3](./src/assets/project-description/3.%20Registration%20on%20the%20resource.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Picture 3.** Registration on the resource.
 
-### `npm test`
+![Picture 4](./src/assets/project-description/4.%20Redirect%20to%20homepage.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Picture 4.** Redirect to homepage.
 
-### `npm run build`
+![Picture 5](./src/assets/project-description/5.%20Visit%20About%20page.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Picture 5.** Visit About page.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Picture 6](./src/assets/project-description/6.%20Exit%20the%20application.%20Redirect%20to%20Sign%20In%20page.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Picture 6.** Exit the application. Redirect to Sign In page.
 
-### `npm run eject`
+![Picture 7](./src/assets/project-description/7.%20%20Login%20to%20the%20application%20using%20a%20registered%20user.%20Redirect%20to%20homepage..png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Picture 7.** Login to the application using a registered user. Redirect to homepage.
