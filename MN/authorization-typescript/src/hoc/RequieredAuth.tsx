@@ -1,12 +1,9 @@
 import { useAuth } from "hooks/useAuth"
-import React, { FC, ReactNode } from "react"
+import React from "react"
 import { Navigate, useLocation } from "react-router-dom"
 
-interface RequiredAuthProps {
-  children: ReactNode;
-}
 
-const RequieredAuth: FC<RequiredAuthProps> = ({ children }) => {
+const RequieredAuth = ({children}: {children: JSX.Element}) => {
   const location = useLocation()
   const { isAuth } = useAuth()
   if (!isAuth) {
