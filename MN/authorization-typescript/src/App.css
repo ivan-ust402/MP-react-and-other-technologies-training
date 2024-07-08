@@ -1,38 +1,155 @@
-.App {
+:root {
+  --color-bg: #a182b3;
+  --color-active: #FFF2B5;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  background-color: var(--color-bg);
+  padding: 2rem 0;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header > a {
+  color: white;
+  text-decoration: none;
+  padding: 0 1rem;
+}
+header > a:hover {
+  text-decoration: underline;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+footer {
+  background-color: var(--color-bg);
+  padding: 2rem 0;
+  text-align: center;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.container {
+  max-width: 900px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+main {
+  box-sizing: border-box;
+  min-height: calc(100vh - 64px - 126px);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+main a {
+  text-decoration: none;
+  color: var(--color-bg);
+}
+main a:hover {
+  text-decoration: underline;
+}
+
+.active-link {
+  color: var(--color-active);
+  cursor: default;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  color: red;
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.auth-text {
+  display: flex;
+  gap: 5px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: fit-content;
+}
+
+.form-label {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.form-input {
+  border-radius: 5px;
+  border-color: #ccc;
+  outline: #ccc;
+  padding: 5px;
+}
+.form-input:focus{
+  outline: var(--color-active);
+  border: 2px solid var(--color-active);
+}
+
+.form-input:active{
+  border: 2px solid var(--color-active);
+}
+
+.form-btn {
+  border: 1px solid var(--color-bg);
+  border-radius: 5px;
+  background-color: #a182b3;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+.auth-position {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn_secondary {
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all .3s ease-in;
+}
+.btn_secondary > a {
+  text-decoration: none;
+}
+.btn_secondary:active {
+  border: none;
+  border-radius: 10px;
+}
+
+@media (hover: hover) {
+  .form-btn:hover {
+    background-color: #9663b4;
+    border-color: #9663b4;
   }
-  to {
-    transform: rotate(360deg);
+  .btn_secondary:hover {
+    background-color: #ccc;
   }
 }
