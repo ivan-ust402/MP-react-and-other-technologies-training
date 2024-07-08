@@ -1,6 +1,6 @@
+import { useAppDispatch } from "hooks/redux-hooks"
 import { useAuth } from "hooks/useAuth"
 import React, {FC} from "react"
-import { useDispatch } from "react-redux"
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom"
 import { removeUser } from "store/slices/userSlice"
 
@@ -13,7 +13,7 @@ const Layout: FC = () => {
   const { isAuth } = useAuth()
   const location = useLocation()
   const fromPage = location.state?.from?.pathname || "/"
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const hadlerSignOut = () => {
     dispatch(removeUser())
     navigate("login", { replace: true })

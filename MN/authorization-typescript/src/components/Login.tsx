@@ -1,18 +1,12 @@
 import React, {FC} from "react"
-import { useDispatch } from "react-redux"
 import { setUser } from "store/slices/userSlice"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { Form } from "./Form"
 import { useLocation, useNavigate } from "react-router-dom"
-
-interface User {
-  email: string;
-  accessToken: string;
-  uid: string;
-}
+import { useAppDispatch } from "hooks/redux-hooks"
 
 const Login: FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location?.state?.from || '/'
@@ -20,10 +14,10 @@ const Login: FC = () => {
   const handleLogin = (email: string, password: string) => {
     const auth = getAuth()
     signInWithEmailAndPassword(auth, email, password)
-      .then(({user}: {user: User}) => {
+      .then(({user}) => {
         dispatch(setUser({
           email: user.email,
-          token: user.accessToken,
+          token: user.refreshToken,
           id: user.uid,
         }))
         navigate(from, {replace: true})

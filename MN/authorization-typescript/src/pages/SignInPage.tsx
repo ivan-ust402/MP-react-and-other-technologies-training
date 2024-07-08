@@ -7,7 +7,8 @@ const SignInPage = () => {
     <div>
       <h1>Sign In</h1>
       <div className="auth-position">
-        <Login className="form-position" />
+        {/* <Login className="form-position" /> */}
+        <Login />
         <p className="auth-text">
           If you are not registred yet, please
           <Link to="/registration">sign up.</Link>

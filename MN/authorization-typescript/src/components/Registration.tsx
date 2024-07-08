@@ -1,26 +1,26 @@
 import React from "react"
-import { useDispatch } from "react-redux"
 import { setUser } from "store/slices/userSlice"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { Form } from "./Form"
 import { useLocation, useNavigate } from "react-router-dom"
+import { useAppDispatch } from "hooks/redux-hooks"
+
 const Registration = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate  = useNavigate()
   const location = useLocation()
   const from = location?.state?.from || '/'
 
-  const handleRegister = (email, password) => {
+  const handleRegister = (email: string, password: string) => {
     const auth = getAuth()
     createUserWithEmailAndPassword(auth, email, password)
       .then(({user}) => {
-        console.log(user)
         dispatch(setUser({
           email: user.email,
-          token: user.accessToken,
+          token: user.refreshToken,
           id: user.uid,
         }))
-        navigate(from, {replace: 'true'})
+        navigate(from, {replace: true})
       })
       .catch((error) => {
         // const errorCode = error.code
