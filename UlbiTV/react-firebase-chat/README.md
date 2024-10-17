@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Portfolio project (Проект "Портфолио")
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description(RU) (Описание)
+Этот проект — real-time чат с авторизацией через google.
 
-## Available Scripts
+Проект создан с использованием современных технологий: TypeScript, React-Router-Dom, Redux-toolkit и фреймворк i18n для локализации.
 
-In the project directory, you can run:
+В приложении три страницы: "Обо мне", "Проекты" и "Контакты".
 
-### `npm start`
+На странице "Обо мне" представлена приветственная информация. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+На странице "Проекты" можно увидеть мои работы с возможностью фильтрации по стеку. В каждой карточке проекта есть ссылки на лайв-версию и исходный код.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Страница "Контакты" предлагает способы связи со мной: кнопка для перехода в Telegram и кнопка для копирования электронной почты.
 
-### `npm test`
+Навигация удобна: в десктопной версии есть боковое меню, а в мобильной — "Бургер меню". Также можно переключать язык и тему оформления. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Приложение адаптировано под все разрешения.
 
-### `npm run build`
+Познакомиться с ним можно по ссылке: [real-time чат](https://mp-portfolio-omega.vercel.app/). 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Description(En)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You can get acquainted with it at the link: [real-time chat](https://mp-portfolio-omega.vercel.app/).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies used (Используемые технологии)
+* React
+* Redux-Toolkit
+* React-Router-Dom
+* react-firebase-hooks
+* firebase
 
-### `npm run eject`
+## Visual display of the application's operation (Визуальное отображение функциональности или экранов приложения)
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+  <div style="text-align: center; max-width: 700px;">
+    <img src="src/assets/img/projectDescription/0.MainPage(dark theme, desktop version).jpg"/>
+    <p><b>Picture 1.</b> Main page. Dark theme. Desktop version.</p>
+  </div>
+  <div style="text-align: center; max-width: 700px;">
+    <img src="src/assets/img/projectDescription/1.MainPage(light theme, desktop version).jpg"/>
+    <p><b>Picture 2.</b> Main page. Light theme. Desktop version.</p>
+  </div>
+  <div style="text-align: center;  max-width: 700px;">
+    <img src="src/assets/img/projectDescription/2.ProjectsPage(light theme, desktop version).jpg"/>
+    <p><b>Picture 3.</b> Projects page. Light theme. Desktop version.</p>
+  </div>
+  <div style="text-align: center;  max-width: 700px;">
+    <img src="src/assets/img/projectDescription/3.ContactsPage(light theme, desktop version).jpg"/>
+    <p><b>Picture 4.</b> Contacts page. Light theme. Desktop version.</p>
+  </div>
+  <div style="text-align: center;  max-width: 700px;">
+    <img src="src/assets/img/projectDescription/5.MainPage(light theme, tablet and mobile version).jpg"/>
+    <p><b>Picture 5.</b> Main page. Light theme. Tablet and mobile version.</p>
+  </div>
+  <div style="text-align: center;  max-width: 700px;">
+    <img src="src/assets/img/projectDescription/6.BurgerMenu(light theme, tablet and mobile version).jpg"/>
+    <p><b>Picture 6.</b>Burger menu. Light theme. Tablet and mobile version.</p>
+  </div>
+  <div style="text-align: center;  max-width: 700px;">
+    <img src="src/assets/img/projectDescription/7.ProjectsPage(light theme, tablet and mobile version).jpg"/>
+    <p><b>Picture 7.</b>Projects Page. Light theme. Tablet and mobile version.</p>
+  </div>
+  <div style="text-align: center;  max-width: 700px;">
+    <img src="src/assets/img/projectDescription/4.ContactsPage(light theme, tablet and mobile version).jpg"/>
+    <p><b>Picture 8.</b> Contacts page. Light theme. Tablet and mobile version.</p>
+  </div>
+  <div style="text-align: center;  max-width: 700px;">
+    <img src="src/assets/img/projectDescription/8.MainPage(light theme, tablet and mobile version, language ru).jpg"/>
+    <p><b>Picture 9.</b> Main page. Light theme. Tablet and mobile version. Ru Language version.</p>
+  </div>
+</div>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
