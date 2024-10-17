@@ -1,6 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
-import { Chat, Layout, Login, About } from '../components'
+import { Layout} from '../components'
 import { RequieredAuth } from '../hoc/RequiredAuth'
+import { About, Chat, Login } from '../pages'
 
 
 export const router = createBrowserRouter(createRoutesFromElements(

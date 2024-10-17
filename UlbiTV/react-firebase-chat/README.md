@@ -30,6 +30,7 @@ You can get acquainted with it at the link: [real-time chat](https://mp-portfoli
 * react-firebase-hooks
 * firebase
 * sass
+* material ui (npm install @mui/material @emotion/react @emotion/styled; npm install @mui/icons-material)
 
 ## Visual display of the application's operation (Визуальное отображение функциональности или экранов приложения)
 <div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
