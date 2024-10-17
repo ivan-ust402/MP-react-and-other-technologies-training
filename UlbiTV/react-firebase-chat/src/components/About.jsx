@@ -1,11 +1,10 @@
 import React from 'react';
 
-export const Chat = () => {
+export const About = () => {
   return (
     <div>
-      <h1>Chat</h1>
+      About
     </div>
   );
 }
-
 
