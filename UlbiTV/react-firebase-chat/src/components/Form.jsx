@@ -1,7 +1,7 @@
 import { Button, TextField, Typography } from '@mui/material';
 import React from 'react';
 
-export const Form = ({username, setUsername, handleSubmit, password, setPassword, error}) => {
+export const Form = ({username, setUsername, handleSubmit, password, setPassword, error, buttonTitle}) => {
   return (
     <form onSubmit={handleSubmit}>
         <TextField
@@ -34,7 +34,7 @@ export const Form = ({username, setUsername, handleSubmit, password, setPassword
           background: 'rgb(169, 169, 218)'
         }}
         >
-          Войти
+          {buttonTitle}
         </Button>
       </form>
   );

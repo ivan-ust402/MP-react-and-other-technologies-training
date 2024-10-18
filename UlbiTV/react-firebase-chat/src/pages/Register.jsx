@@ -1,9 +1,15 @@
 import { Container, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Form } from '../components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { setUser } from '../store/slices/userSlice';
 
 export const Register = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const to = '/chat'
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -14,8 +20,37 @@ export const Register = () => {
       setError('Оба поля обязательны для заполнения');
     } else {
       setError('');
-      // Здесь можно добавить логику для отправки данных на сервер
-      alert(`Логин: ${username}, Пароль: ${password}`);
+      const auth = getAuth()
+      createUserWithEmailAndPassword(auth, username, password)
+      .then(({user}) => {
+        navigate(to)
+        dispatch(setUser({
+          email: user.email,
+          token: user.accessToken,
+          id: user.uid,
+        }))
+        
+      })
+      .catch((error) => {
+        console.log(error.message)
+        if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+          setError('Password should be at least 6 characters, try again')
+          setPassword('')
+          setUsername('')
+        } else if (error.message === 'Firebase: Error (auth/invalid-email).') {
+          setError('You entered incorrect Email, try again')
+          setPassword('')
+          setUsername('')
+        } else {
+          setError('Something went wrong! Try entering your details again.')
+        }
+      })
+      .finally(
+        // setTimeout(() => {
+        //   setError('')
+        // }, 3000)
+        
+      )
     }
   };
   return (
@@ -30,10 +65,11 @@ export const Register = () => {
           password={password}
           setPassword={setPassword}
           error={error}
-          handleSubmit={handleSubmit} />
+          handleSubmit={handleSubmit} 
+          buttonTitle={'Sign Up'}
+        />
         <Typography component="p" sx={{
           marginTop: '20px',
-          textAlign: 'center'
         }}>
          If you are already registered, <Link to='/login' className='link'>log in</Link>
         </Typography>

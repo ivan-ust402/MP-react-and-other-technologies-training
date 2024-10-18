@@ -44,6 +44,14 @@ a {
     text-align: center;
   }
 }
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
 .login {
   display: flex;
   flex-direction: column;

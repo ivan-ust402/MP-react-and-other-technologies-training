@@ -1,9 +1,15 @@
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { Container, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Form } from '../components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/slices/userSlice";
 
 export const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const to = '/chat'
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -14,8 +20,31 @@ export const Login = () => {
       setError('Оба поля обязательны для заполнения');
     } else {
       setError('');
-      // Здесь можно добавить логику для отправки данных на сервер
-      alert(`Логин: ${username}, Пароль: ${password}`);
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, username, password)
+        .then(({user}) =>{
+          dispatch(setUser({
+            email: user.email,
+            token: user.accessToken,
+            id: user.uid
+          }))
+          navigate(to, {replace: true})
+        })
+        .catch((error) => {
+          console.log(error.message)
+          if (error.message === 'Firebase: Error (auth/invalid-credential).') {
+            setError('You entered incorrect data, try again')
+            setPassword('')
+            setUsername('')
+          } else if (error.message === 'Firebase: Error (auth/invalid-email).') {
+            setError('You entered incorrect Email, try again')
+            setPassword('')
+            setUsername('')
+          } else {
+            setError('Something went wrong! Try entering your details again.')
+          }
+          
+        })
     }
   };
   return (
@@ -31,10 +60,10 @@ export const Login = () => {
         setPassword={setPassword} 
         error={error} 
         handleSubmit={handleSubmit}
+        buttonTitle={'Sign In'}
       />
       <Typography component="p" sx={{
         marginTop: '20px',
-        textAlign: 'center'
       }}>
         If you are not registered yet, please <Link to='/registration' className='link'>register</Link>
       </Typography>

@@ -10,12 +10,17 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { useDispatch } from 'react-redux';
+import { removeUser } from '../store/slices/userSlice';
 
 const pages = ['About', 'Chat'];
 
 export const Navbar = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const to = '/'
   const { isAuth } = useAuth()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -26,6 +31,11 @@ export const Navbar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const handleLogout = () => {
+    dispatch(removeUser())
+    navigate(to)
+  }
 
 
   return (
@@ -41,7 +51,7 @@ export const Navbar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
+            component="h6"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -96,7 +106,10 @@ export const Navbar = () => {
               {
                 isAuth
                   ? <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography sx={{ textAlign: 'center' }}>
+                    <Typography 
+                      sx={{ textAlign: 'center' }}
+                      onClick={handleLogout}
+                    >
                       Logout
                     </Typography>
                   </MenuItem>
@@ -113,7 +126,7 @@ export const Navbar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
+            component="h5"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -143,12 +156,21 @@ export const Navbar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
-            {isAuth 
-              ? <Button sx={{ my: 2, color: 'white', display: 'block' }}>Logout</Button>
-              : <Button sx={{ my: 2, color: 'white', display: 'block' }}>
-                  <Link to={'/login'}>Login</Link>
-                </Button>
-              }
+            {isAuth
+              ? <Button
+                sx={{ my: 2, color: 'white', display: 'block' }}
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+              : <Button
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                <Link to={'/login'}>
+                  Login
+                </Link>
+              </Button>
+            }
           </Box>
         </Toolbar>
       </Container>
