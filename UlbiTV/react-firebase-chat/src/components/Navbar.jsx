@@ -11,10 +11,12 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const pages = ['About', 'Chat'];
 
 export const Navbar = () => {
+  const { isAuth } = useAuth()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -40,7 +42,6 @@ export const Navbar = () => {
             variant="h6"
             noWrap
             component="a"
-            href='#'
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -92,6 +93,20 @@ export const Navbar = () => {
                   </Typography>
                 </MenuItem>
               ))}
+              {
+                isAuth
+                  ? <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography sx={{ textAlign: 'center' }}>
+                      Logout
+                    </Typography>
+                  </MenuItem>
+                  : <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography sx={{ textAlign: 'center' }}>
+                      <Link to={'/login'}>Login</Link>
+                    </Typography>
+                  </MenuItem>
+              }
+
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -110,7 +125,7 @@ export const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            <Link style={{color: 'white'}} to={'/'}>
+            <Link style={{ color: 'white' }} to={'/'}>
               LOGO
             </Link>
           </Typography>
@@ -127,7 +142,14 @@ export const Navbar = () => {
               </Button>
             ))}
           </Box>
-
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
+            {isAuth 
+              ? <Button sx={{ my: 2, color: 'white', display: 'block' }}>Logout</Button>
+              : <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+                  <Link to={'/login'}>Login</Link>
+                </Button>
+              }
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
