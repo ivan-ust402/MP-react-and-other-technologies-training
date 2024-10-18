@@ -2,11 +2,17 @@ import { createBrowserRouter, createRoutesFromElements, Route } from 'react-rout
 import { Layout} from '../components'
 import { About, Chat, Login, NotFoundPage } from '../pages'
 import { IfAuth, RequieredAuth } from '../hoc'
+import { Register } from '../pages/Register'
 
 
 export const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />}>
     <Route index element={<About />} />
+    <Route path='registration' element={
+      <IfAuth>
+        <Register />
+      </IfAuth> 
+    } />
     <Route path='login' element={
       <IfAuth>
         <Login />
