@@ -38,9 +38,9 @@ export const Navbar = () => {
   }
 
   const handleRouteTo = (to) => {
+    handleCloseNavMenu()
     navigate(to)
   }
-
 
   return (
     <AppBar
@@ -71,6 +71,7 @@ export const Navbar = () => {
             </Link>
           </Typography>
 
+          {/* Бургер меню */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -99,10 +100,11 @@ export const Navbar = () => {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page}>
+                <MenuItem 
+                  key={page} 
+                  onClick={() => handleRouteTo(`/${page === 'About' ? '' : page.toLowerCase()}`)}>
                   <Typography
                     sx={{ textAlign: 'center' }}
-                    onClick={() => handleRouteTo(`/${page === 'About' ? '' : page.toLowerCase()}`)}
                   >
                     {page}
                   </Typography>
@@ -110,24 +112,21 @@ export const Navbar = () => {
               ))}
               {
                 isAuth
-                  ? <MenuItem onClick={handleCloseNavMenu}>
+                  ? <MenuItem onClick={handleLogout}>
                     <Typography
                       sx={{ textAlign: 'center' }}
-                      onClick={handleLogout}
                     >
                       Logout
                     </Typography>
                   </MenuItem>
-                  : <MenuItem onClick={handleCloseNavMenu}>
+                  : <MenuItem onClick={() => handleRouteTo('/login')}>
                     <Typography
                       sx={{ textAlign: 'center' }}
-                      onClick={() => handleRouteTo('/logout')}
                     >
                       Login
                     </Typography>
                   </MenuItem>
               }
-
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -144,6 +143,7 @@ export const Navbar = () => {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
             }}
             onClick={() => handleRouteTo('/')}
           >
