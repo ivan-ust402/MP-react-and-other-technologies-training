@@ -37,6 +37,10 @@ export const Navbar = () => {
     navigate(to)
   }
 
+  const handleRouteTo = (to) => {
+    navigate(to)
+  }
+
 
   return (
     <AppBar
@@ -95,18 +99,19 @@ export const Navbar = () => {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>
-                    <Link to={`/${page === 'About' ? '' : page.toLowerCase()}`}>
-                      {page}
-                    </Link>
+                <MenuItem key={page}>
+                  <Typography
+                    sx={{ textAlign: 'center' }}
+                    onClick={() => handleRouteTo(`/${page === 'About' ? '' : page.toLowerCase()}`)}
+                  >
+                    {page}
                   </Typography>
                 </MenuItem>
               ))}
               {
                 isAuth
                   ? <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography 
+                    <Typography
                       sx={{ textAlign: 'center' }}
                       onClick={handleLogout}
                     >
@@ -114,8 +119,11 @@ export const Navbar = () => {
                     </Typography>
                   </MenuItem>
                   : <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography sx={{ textAlign: 'center' }}>
-                      <Link to={'/login'}>Login</Link>
+                    <Typography
+                      sx={{ textAlign: 'center' }}
+                      onClick={() => handleRouteTo('/logout')}
+                    >
+                      Login
                     </Typography>
                   </MenuItem>
               }
@@ -137,21 +145,21 @@ export const Navbar = () => {
               color: 'inherit',
               textDecoration: 'none',
             }}
+            onClick={() => handleRouteTo('/')}
           >
-            <Link style={{ color: 'white' }} to={'/'}>
-              LOGO
-            </Link>
+            LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+            onClick={handleCloseNavMenu}
+          >
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleRouteTo(`/${page === 'About' ? '' : page.toLowerCase()}`)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link to={`/${page === 'About' ? '' : page.toLowerCase()}`}>
-                  {page}
-                </Link>
+                {page}
               </Button>
             ))}
           </Box>
@@ -165,10 +173,9 @@ export const Navbar = () => {
               </Button>
               : <Button
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                onClick={() => handleRouteTo('/login')}
               >
-                <Link to={'/login'}>
-                  Login
-                </Link>
+                Login
               </Button>
             }
           </Box>
