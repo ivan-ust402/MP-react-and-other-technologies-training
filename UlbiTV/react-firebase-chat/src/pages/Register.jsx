@@ -1,6 +1,6 @@
 import { Container, Typography } from '@mui/material'
 import React from 'react'
-import { Form, Loader } from '../components';
+import { Form, LoaderConicGradient } from '../components';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
@@ -19,7 +19,7 @@ export const Register = () => {
     <div className="login">
       {
         loading
-        ? <Loader />
+        ? <LoaderConicGradient />
         : <Container maxWidth="xs">
         <Typography variant="h5" component="h1" gutterBottom>
           Registration

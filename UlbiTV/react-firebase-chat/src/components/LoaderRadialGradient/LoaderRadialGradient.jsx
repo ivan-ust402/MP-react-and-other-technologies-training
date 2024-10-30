@@ -3,8 +3,6 @@ import styles from './loaderRadialGradient.module.scss'
 
 export const LoaderRadialGradient = () => {
   return (
-    <div className={styles.loader}>
-      
-    </div>
+    <div className={styles.loader}></div>
   );
 }
