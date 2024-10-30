@@ -1,8 +1,10 @@
 import React from 'react';
+import { LoaderConicGradient } from '../components';
 
 export const About = () => {
   return (
     <div className='about'>
+      <LoaderConicGradient />
       <h1 className="about__title">React & Firebase real-time chat</h1>
 
       <div className="about__text-box">

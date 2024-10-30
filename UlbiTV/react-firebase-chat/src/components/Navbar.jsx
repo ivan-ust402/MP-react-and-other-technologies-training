@@ -33,6 +33,7 @@ export const Navbar = () => {
   };
 
   const handleLogout = () => {
+    handleCloseNavMenu()
     dispatch(removeUser())
     navigate(to)
   }
