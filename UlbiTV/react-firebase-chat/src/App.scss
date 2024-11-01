@@ -78,11 +78,11 @@ a {
   }
   &__message {
     background-color: #FFF;
-    width: 70%;
+    width: fit-content;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    &:nth-child(even) {
+    &_ourself {
     background-color: #f5f7e4;
     align-self: flex-end;
     }

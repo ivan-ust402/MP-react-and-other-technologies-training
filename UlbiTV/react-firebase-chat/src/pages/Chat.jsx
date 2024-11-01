@@ -20,7 +20,7 @@ export const Chat = () => {
   const [messages, loading, , snapshot] = useCollectionData(customQuery, {
     idField: 'id'
   })
-   console.log(snapshot)
+  console.log(snapshot)
   const handlerMessageSending = (e) => {
     e.preventDefault()
     setValue(e.target.value)
@@ -68,15 +68,25 @@ export const Chat = () => {
             ? <Loader />
             : <div className="chat__messages">
               {
-               
+
                 messages && messages.map((message, index) => {
-                  // console.log(message)
-                  return (
-                    <div className="chat__message" key={index}>
-                      <strong>{message.email}: </strong>
-                      {message.text}
-                    </div>
-                  )
+                  console.log('message email:', typeof message.email)
+                  console.log('email:', typeof email)
+                  if (email === message.email) {
+                    return (
+                      <div className="chat__message chat__message_ourself" key={index}>
+                        <strong>{message.email}: </strong>
+                        {message.text}
+                      </div>
+                    )
+                  } else {
+                    return (
+                      <div className="chat__message" key={index}>
+                        <strong>{message.email}: </strong>
+                        {message.text}
+                      </div>
+                    )
+                  }
                 })
               }
             </div>
