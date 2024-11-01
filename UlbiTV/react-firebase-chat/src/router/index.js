@@ -17,9 +17,9 @@ export const router = createBrowserRouter(createRoutesFromElements(
     <Route 
       path='chat' 
       element={
-        // <RequieredAuth>
+        <RequieredAuth>
           <Chat />
-        // </RequieredAuth>
+        </RequieredAuth>
       } 
     />
     <Route path="*" element={<NotFoundPage />} />
